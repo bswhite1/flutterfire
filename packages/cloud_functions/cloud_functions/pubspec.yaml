@@ -1,38 +1,48 @@
-name: cloud_functions
-description: A Flutter plugin allowing you to use Firebase Cloud Functions.
-version: 1.0.3
-homepage: https://firebase.flutter.dev/docs/functions/overview
-repository: https://github.com/FirebaseExtended/flutterfire/tree/master/packages/cloud_functions/cloud_functions
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "A Flutter plugin allowing you to use Firebase Cloud Functions."
+homepage: "https://firebase.flutter.dev/docs/functions/overview"
+name: "cloud_functions"
+repository: "https://github.com/FirebaseExtended/flutterfire/tree/master/packages/cloud_functions/cloud_functions"
+version: "1.0.3"
+dependencies: 
+  cloud_functions_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_functions\\cloud_functions_platform_interface"
+  cloud_functions_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_functions\\cloud_functions_web"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  cloud_functions_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_functions\\cloud_functions_platform_interface"
+  cloud_functions_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_functions\\cloud_functions_web"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+dev_dependencies: 
+  plugin_platform_interface: "^2.0.0"
+  test: "any"
+  flutter_driver: 
+    sdk: "flutter"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.12.13+hotfix.5"
-
-dependencies:
-  cloud_functions_platform_interface: ^5.0.1
-  cloud_functions_web: ^4.0.3
-  firebase_core: ^1.0.3
-  firebase_core_platform_interface: ^4.0.0
-  flutter:
-    sdk: flutter
-
-dev_dependencies:
-  flutter_driver:
-    sdk: flutter
-  flutter_test:
-    sdk: flutter
-  plugin_platform_interface: ^2.0.0
-  test: any
-
-flutter:
-  plugin:
-    platforms:
-      android:
-        package: io.flutter.plugins.firebase.functions
-        pluginClass: FlutterFirebaseFunctionsPlugin
-      ios:
-        pluginClass: FLTFirebaseFunctionsPlugin
-      macos:
-        pluginClass: FLTFirebaseFunctionsPlugin
-      web:
-        default_package: cloud_functions_web
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
+  plugin: 
+    platforms: 
+      android: 
+        package: "io.flutter.plugins.firebase.functions"
+        pluginClass: "FlutterFirebaseFunctionsPlugin"
+      ios: 
+        pluginClass: "FLTFirebaseFunctionsPlugin"
+      macos: 
+        pluginClass: "FLTFirebaseFunctionsPlugin"
+      web: 
+        default_package: "cloud_functions_web"

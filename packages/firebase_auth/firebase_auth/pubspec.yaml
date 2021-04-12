@@ -1,41 +1,49 @@
-name: firebase_auth
-description: Flutter plugin for Firebase Auth, enabling Android and iOS
-  authentication using passwords, phone numbers and identity providers
-  like Google, Facebook and Twitter.
-homepage: https://firebase.flutter.dev/docs/auth/overview
-repository: https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_auth/firebase_auth
-version: 1.0.3
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "Flutter plugin for Firebase Auth, enabling Android and iOS authentication using passwords, phone numbers and identity providers like Google, Facebook and Twitter."
+homepage: "https://firebase.flutter.dev/docs/auth/overview"
+name: "firebase_auth"
+repository: "https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_auth/firebase_auth"
+version: "1.0.3"
+dependencies: 
+  meta: "^1.3.0"
+  firebase_auth_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_auth\\firebase_auth_platform_interface"
+  firebase_auth_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_auth\\firebase_auth_web"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_auth_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_auth\\firebase_auth_platform_interface"
+  firebase_auth_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_auth\\firebase_auth_web"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+dev_dependencies: 
+  async: "^2.5.0"
+  mockito: "^5.0.0"
+  plugin_platform_interface: "^2.0.0"
+  test: "any"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.12.13+hotfix.4"
-
-dependencies:
-  firebase_auth_platform_interface: ^4.0.2
-  firebase_auth_web: ^1.0.5
-  firebase_core: ^1.0.3
-  firebase_core_platform_interface: ^4.0.0
-  flutter:
-    sdk: flutter
-  meta: ^1.3.0
-
-dev_dependencies:
-  async: ^2.5.0
-  flutter_test:
-    sdk: flutter
-  mockito: ^5.0.0
-  plugin_platform_interface: ^2.0.0
-  test: any
-
-flutter:
-  plugin:
-    platforms:
-      android:
-        package: io.flutter.plugins.firebase.auth
-        pluginClass: FlutterFirebaseAuthPlugin
-      ios:
-        pluginClass: FLTFirebaseAuthPlugin
-      macos:
-        pluginClass: FLTFirebaseAuthPlugin
-      web:
-        default_package: firebase_auth_web
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
+  plugin: 
+    platforms: 
+      android: 
+        package: "io.flutter.plugins.firebase.auth"
+        pluginClass: "FlutterFirebaseAuthPlugin"
+      ios: 
+        pluginClass: "FLTFirebaseAuthPlugin"
+      macos: 
+        pluginClass: "FLTFirebaseAuthPlugin"
+      web: 
+        default_package: "firebase_auth_web"

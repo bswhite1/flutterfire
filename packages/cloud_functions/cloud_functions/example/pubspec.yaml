@@ -1,36 +1,34 @@
-name: cloud_functions_example
-description: Demonstrates how to use the cloud_functions plugin.
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "Demonstrates how to use the cloud_functions plugin."
+name: "cloud_functions_example"
+dependencies: 
+  cupertino_icons: "^0.1.2"
+  cloud_functions: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_functions\\cloud_functions"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  cloud_functions: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_functions\\cloud_functions"
+  cloud_functions_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_functions\\cloud_functions_platform_interface"
+  cloud_functions_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_functions\\cloud_functions_web"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_core_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_web"
+dev_dependencies: 
+  drive: "0.0.1-6.0.pre"
+  test: "any"
+  flutter_driver: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.12.13+hotfix.4"
-
-dependencies:
-  cloud_functions:
-    path: ../
-  cupertino_icons: ^0.1.2
-  firebase_core:
-    path: ../../../firebase_core/firebase_core
-  flutter:
-    sdk: flutter
-
-dependency_overrides:
-  cloud_functions_platform_interface:
-    path: ../../../cloud_functions/cloud_functions_platform_interface
-  cloud_functions_web:
-    path: ../../../cloud_functions/cloud_functions_web
-  firebase_core:
-    path: ../../../firebase_core/firebase_core
-  firebase_core_platform_interface:
-    path: ../../../firebase_core/firebase_core_platform_interface
-  firebase_core_web:
-    path: ../../../firebase_core/firebase_core_web
-
-dev_dependencies:
-  drive: 0.0.1-6.0.pre
-  flutter_driver:
-    sdk: flutter
-  test: any
-
-flutter:
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
   uses-material-design: true

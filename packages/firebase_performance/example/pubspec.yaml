@@ -1,34 +1,32 @@
-name: firebase_performance_example
-description: Demonstrates how to use the firebase_performance plugin.
-author: Flutter Team <flutter-dev@googlegroups.com>
-
-environment:
+# Generated file - do not commit this file.
+author: "Flutter Team <flutter-dev@googlegroups.com>"
+description: "Demonstrates how to use the firebase_performance plugin."
+name: "firebase_performance_example"
+dependencies: 
+  http: "^0.13.0"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_performance: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_performance"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_core_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_web"
+  firebase_performance: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_performance"
+dev_dependencies: 
+  e2e: "^0.6.1"
+  pedantic: "^1.8.0"
+  flutter_driver: 
+    sdk: "flutter"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   sdk: ">=2.12.0 <3.0.0"
-
-dependencies:
-  firebase_core:
-    path: ../../firebase_core/firebase_core
-  firebase_performance:
-    path: ../
-  flutter:
-    sdk: flutter
-  http: ^0.13.0
-
-dependency_overrides:
-  firebase_core:
-    path: ../../firebase_core/firebase_core
-  firebase_core_platform_interface:
-    path: ../../firebase_core/firebase_core_platform_interface
-  firebase_core_web:
-    path: ../../firebase_core/firebase_core_web
-
-dev_dependencies:
-  e2e: ^0.6.1
-  flutter_driver:
-    sdk: flutter
-  flutter_test:
-    sdk: flutter
-  pedantic: ^1.8.0
-
-flutter:
+flutter: 
   uses-material-design: true

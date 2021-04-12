@@ -1,37 +1,42 @@
-name: firebase_remote_config
-description:
-  Flutter plugin for Firebase Remote Config. Update your application look and feel and behaviour without
-  re-releasing.
-homepage: https://firebase.flutter.dev/docs/remote-config/overview
-repository: https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_remote_config/firebase_remote_config
-version: 0.9.0-dev.2
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "Flutter plugin for Firebase Remote Config. Update your application look and feel and behaviour without re-releasing."
+homepage: "https://firebase.flutter.dev/docs/remote-config/overview"
+name: "firebase_remote_config"
+repository: "https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_remote_config/firebase_remote_config"
+version: "0.9.0-dev.2"
+dependencies: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_remote_config_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_remote_config\\firebase_remote_config_platform_interface"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_remote_config_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_remote_config\\firebase_remote_config_platform_interface"
+dev_dependencies: 
+  mockito: "^5.0.0"
+  pedantic: "^1.8.0"
+  plugin_platform_interface: "^2.0.0"
+  test: "any"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.12.13+hotfix.5"
-
-dependencies:
-  firebase_core: ^1.0.3
-  firebase_core_platform_interface: ^4.0.0
-  firebase_remote_config_platform_interface: ^0.2.0-dev.1
-  flutter:
-    sdk: flutter
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  mockito: ^5.0.0
-  pedantic: ^1.8.0
-  plugin_platform_interface: ^2.0.0
-  test: any
-
-flutter:
-  plugin:
-    platforms:
-      android:
-        package: io.flutter.plugins.firebase.firebaseremoteconfig
-        pluginClass: FirebaseRemoteConfigPlugin
-      ios:
-        pluginClass: FLTFirebaseRemoteConfigPlugin
-      macos:
-        pluginClass: FLTFirebaseRemoteConfigPlugin
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
+  plugin: 
+    platforms: 
+      android: 
+        package: "io.flutter.plugins.firebase.firebaseremoteconfig"
+        pluginClass: "FirebaseRemoteConfigPlugin"
+      ios: 
+        pluginClass: "FLTFirebaseRemoteConfigPlugin"
+      macos: 
+        pluginClass: "FLTFirebaseRemoteConfigPlugin"

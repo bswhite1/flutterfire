@@ -1,38 +1,36 @@
-name: firebase_crashlytics_example
-description: Demonstrates how to use the firebase_crashlytics plugin.
-author: Flutter Team <flutter-dev@googlegroups.com>
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+author: "Flutter Team <flutter-dev@googlegroups.com>"
+description: "Demonstrates how to use the firebase_crashlytics plugin."
+name: "firebase_crashlytics_example"
+dependencies: 
+  firebase_analytics: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_analytics\\firebase_analytics"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_crashlytics: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_crashlytics\\firebase_crashlytics"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_analytics: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_analytics\\firebase_analytics"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_core_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_web"
+  firebase_crashlytics: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_crashlytics\\firebase_crashlytics"
+  firebase_crashlytics_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_crashlytics\\firebase_crashlytics_platform_interface"
+dev_dependencies: 
+  drive: "0.0.1-6.0.pre"
+  test: "any"
+  flutter_driver: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.12.13+hotfix.5"
-
-dependencies:
-  firebase_analytics:
-    path: ../../../firebase_analytics/firebase_analytics
-  firebase_core:
-    path: ../../../firebase_core/firebase_core
-  firebase_crashlytics:
-    path: ../
-  flutter:
-    sdk: flutter
-
-dependency_overrides:
-  firebase_core:
-    path: ../../../firebase_core/firebase_core
-  firebase_core_platform_interface:
-    path: ../../../firebase_core/firebase_core_platform_interface
-  firebase_core_web:
-    path: ../../../firebase_core/firebase_core_web
-  firebase_crashlytics:
-    path: ../
-  firebase_crashlytics_platform_interface:
-    path: ../../firebase_crashlytics_platform_interface
-
-dev_dependencies:
-  drive: 0.0.1-6.0.pre
-  flutter_driver:
-    sdk: flutter
-  test: any
-
-flutter:
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
   uses-material-design: true

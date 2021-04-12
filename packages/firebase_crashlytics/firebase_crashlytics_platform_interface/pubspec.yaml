@@ -1,22 +1,27 @@
-name: firebase_crashlytics_platform_interface
-description: A common platform interface for the firebase_crashlytics plugin.
-version: 3.0.0
-homepage: https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_crashlytics/firebase_crashlytics_platform_interface
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "A common platform interface for the firebase_crashlytics plugin."
+homepage: "https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_crashlytics/firebase_crashlytics_platform_interface"
+name: "firebase_crashlytics_platform_interface"
+version: "3.0.0"
+dependencies: 
+  collection: "^1.15.0"
+  meta: "^1.3.0"
+  plugin_platform_interface: "^2.0.0"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+dev_dependencies: 
+  mockito: "^5.0.0"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.12.13+hotfix.5"
-
-dependencies:
-  collection: ^1.15.0
-  firebase_core: ^1.0.3
-  flutter:
-    sdk: flutter
-  meta: ^1.3.0
-  plugin_platform_interface: ^2.0.0
-
-dev_dependencies:
-  firebase_core_platform_interface: ^4.0.0
-  flutter_test:
-    sdk: flutter
-  mockito: ^5.0.0
+  sdk: ">=2.12.0 <3.0.0"

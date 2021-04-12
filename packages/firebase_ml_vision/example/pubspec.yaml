@@ -1,46 +1,44 @@
-name: firebase_ml_vision_example
-description: Demonstrates how to use the firebase_ml_vision plugin.
-author: Flutter Team <flutter-dev@googlegroups.com>
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+author: "Flutter Team <flutter-dev@googlegroups.com>"
+description: "Demonstrates how to use the firebase_ml_vision plugin."
+name: "firebase_ml_vision_example"
+dependencies: 
+  camera: "^0.8.1"
+  cupertino_icons: "^1.0.2"
+  image_picker: "^0.6.0"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_ml_vision: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_ml_vision"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_core_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_web"
+  firebase_ml_vision: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_ml_vision"
+dev_dependencies: 
+  e2e: "^0.6.1"
+  path: "^1.8.0"
+  path_provider: "^2.0.0"
+  pedantic: "^1.8.0"
+  test: "any"
+  flutter_driver: 
+    sdk: "flutter"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.10.0"
-
-dependencies:
-  camera: ^0.8.1
-  cupertino_icons: ^1.0.2
-  firebase_core:
-    path: ../../firebase_core/firebase_core
-  firebase_ml_vision:
-    path: ../
-  flutter:
-    sdk: flutter
-  image_picker: ^0.6.0
-
-dependency_overrides:
-  firebase_core:
-    path: ../../firebase_core/firebase_core
-  firebase_core_platform_interface:
-    path: ../../firebase_core/firebase_core_platform_interface
-  firebase_core_web:
-    path: ../../firebase_core/firebase_core_web
-
-dev_dependencies:
-  e2e: ^0.6.1
-  flutter_driver:
-    sdk: flutter
-  flutter_test:
-    sdk: flutter
-  path: ^1.8.0
-  path_provider: ^2.0.0
-  pedantic: ^1.8.0
-  test: any
-
-flutter:
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
+  assets: 
+    - "assets/test_face.jpg"
+    - "assets/test_barcode.jpg"
+    - "assets/test_contact_barcode.jpg"
+    - "assets/test_text.png"
+    - "assets/span_book.jpg"
   uses-material-design: true
-  assets:
-    - assets/test_face.jpg
-    - assets/test_barcode.jpg
-    - assets/test_contact_barcode.jpg
-    - assets/test_text.png
-    - assets/span_book.jpg

@@ -240,6 +240,8 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
 
       firestore.setFirestoreSettings(settings);
 
+//      firestore.setLoggingEnabled(true);
+
       FlutterFirebaseFirestorePlugin.setCachedFirebaseFirestoreInstanceForKey(firestore, appName);
       return firestore;
     }

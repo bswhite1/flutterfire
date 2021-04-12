@@ -1,39 +1,35 @@
-name: firebase_remote_config_example
-description: Demonstrates how to use the firebase_remote_config plugin.
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "Demonstrates how to use the firebase_remote_config plugin."
+name: "firebase_remote_config_example"
+dependencies: 
+  cupertino_icons: "^0.1.0"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_remote_config: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_remote_config\\firebase_remote_config"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_core_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_web"
+  firebase_remote_config: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_remote_config\\firebase_remote_config"
+  firebase_remote_config_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_remote_config\\firebase_remote_config_platform_interface"
+dev_dependencies: 
+  e2e: "^0.6.1"
+  pedantic: "^1.8.0"
+  test: "any"
+  flutter_driver: 
+    sdk: "flutter"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.12.13+hotfix.5"
-
-dependencies:
-  flutter:
-    sdk: flutter
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.0
-  firebase_remote_config:
-    path: ../
-  firebase_core:
-    path: ../../../firebase_core/firebase_core
-
-dependency_overrides:
-  firebase_core:
-    path: ../../../firebase_core/firebase_core
-  firebase_core_web:
-    path: ../../../firebase_core/firebase_core_web
-  firebase_core_platform_interface:
-    path: ../../../firebase_core/firebase_core_platform_interface
-  firebase_remote_config_platform_interface:
-    path: ../../firebase_remote_config_platform_interface
-
-dev_dependencies:
-  pedantic: ^1.8.0
-  flutter_test:
-    sdk: flutter
-  flutter_driver:
-    sdk: flutter
-  test: any
-  e2e: ^0.6.1
-
-flutter:
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
   uses-material-design: true

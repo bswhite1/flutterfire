@@ -1,31 +1,41 @@
-name: cloud_firestore_web
-description: The web implementation of cloud_firestore
-homepage: https://github.com/FirebaseExtended/flutterfire/tree/master/packages/cloud_firestore/cloud_firestore_web
-version: 1.0.4
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "The web implementation of cloud_firestore"
+homepage: "https://github.com/FirebaseExtended/flutterfire/tree/master/packages/cloud_firestore/cloud_firestore_web"
+name: "cloud_firestore_web"
+version: "1.0.4"
+dependencies: 
+  js: "^0.6.3"
+  cloud_firestore_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_firestore\\cloud_firestore_platform_interface"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_web"
+  flutter: 
+    sdk: "flutter"
+  flutter_web_plugins: 
+    sdk: "flutter"
+dependency_overrides: 
+  cloud_firestore_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_firestore\\cloud_firestore_platform_interface"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_core_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_web"
+dev_dependencies: 
+  mockito: "^5.0.0"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.12.13+hotfix.4"
-
-dependencies:
-  cloud_firestore_platform_interface: ^4.0.1
-  firebase_core: ^1.0.3
-  firebase_core_web: ^1.0.2
-  flutter:
-    sdk: flutter
-  flutter_web_plugins:
-    sdk: flutter
-  js: ^0.6.3
-
-dev_dependencies:
-  firebase_core_platform_interface: ^4.0.0
-  flutter_test:
-    sdk: flutter
-  mockito: ^5.0.0
-
-flutter:
-  plugin:
-    platforms:
-      web:
-        pluginClass: FirebaseFirestoreWeb
-        fileName: cloud_firestore_web.dart
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
+  plugin: 
+    platforms: 
+      web: 
+        fileName: "cloud_firestore_web.dart"
+        pluginClass: "FirebaseFirestoreWeb"

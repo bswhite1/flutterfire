@@ -1,36 +1,34 @@
-name: firebase_performance
-description:
-  Flutter plugin for Google Performance Monitoring for Firebase, an app
-  measurement solution that monitors traces and HTTP/S network requests on Android and
-  iOS.
-homepage: https://firebase.flutter.dev/docs/performance/overview
-repository: https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_performance
-version: 0.6.0+2
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "Flutter plugin for Google Performance Monitoring for Firebase, an app measurement solution that monitors traces and HTTP/S network requests on Android and iOS."
+homepage: "https://firebase.flutter.dev/docs/performance/overview"
+name: "firebase_performance"
+repository: "https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_performance"
+version: "0.6.0+2"
+dependencies: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+dev_dependencies: 
+  e2e: "^0.6.1"
+  http: "^0.13.0"
+  pedantic: "^1.8.0"
+  test: "any"
+  flutter_driver: 
+    sdk: "flutter"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.10.0"
-
-dependencies:
-  firebase_core: ^1.0.3
-  flutter:
-    sdk: flutter
-
-dev_dependencies:
-  e2e: ^0.6.1
-  flutter_driver:
-    sdk: flutter
-  flutter_test:
-    sdk: flutter
-  http: ^0.13.0
-  pedantic: ^1.8.0
-  test: any
-
-flutter:
-  plugin:
-    platforms:
-      android:
-        package: io.flutter.plugins.firebaseperformance
-        pluginClass: FirebasePerformancePlugin
-      ios:
-        pluginClass: FLTFirebasePerformancePlugin
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
+  plugin: 
+    platforms: 
+      android: 
+        package: "io.flutter.plugins.firebaseperformance"
+        pluginClass: "FirebasePerformancePlugin"
+      ios: 
+        pluginClass: "FLTFirebasePerformancePlugin"

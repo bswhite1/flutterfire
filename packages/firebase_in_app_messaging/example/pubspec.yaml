@@ -1,37 +1,37 @@
-name: firebase_in_app_messaging_example
-description: Demonstrates how to use the firebase_in_app_messaging plugin.
-publish_to: 'none'
-
-environment:
+# Generated file - do not commit this file.
+description: "Demonstrates how to use the firebase_in_app_messaging plugin."
+name: "firebase_in_app_messaging_example"
+publish_to: "none"
+dependencies: 
+  cupertino_icons: "^0.1.2"
+  firebase_analytics: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_analytics\\firebase_analytics"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_in_app_messaging: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_in_app_messaging"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_analytics: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_analytics\\firebase_analytics"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_core_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_web"
+  firebase_in_app_messaging: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_in_app_messaging"
+dev_dependencies: 
+  e2e: "^0.6.1"
+  pedantic: "^1.8.0"
+  test: "any"
+  flutter_driver: 
+    sdk: "flutter"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   sdk: ">=2.12.0 <3.0.0"
-
-dependencies:
-  cupertino_icons: ^0.1.2
-  firebase_analytics:
-    path: ../../firebase_analytics/firebase_analytics
-  firebase_core:
-    path: ../../firebase_core/firebase_core
-  firebase_in_app_messaging:
-    path: ../
-  flutter:
-    sdk: flutter
-
-dependency_overrides:
-  firebase_core:
-    path: ../../firebase_core/firebase_core
-  firebase_core_platform_interface:
-    path: ../../firebase_core/firebase_core_platform_interface
-  firebase_core_web:
-    path: ../../firebase_core/firebase_core_web
-
-dev_dependencies:
-  e2e: ^0.6.1
-  flutter_driver:
-    sdk: flutter
-  flutter_test:
-    sdk: flutter
-  pedantic: ^1.8.0
-  test: any
-
-flutter:
+flutter: 
   uses-material-design: true

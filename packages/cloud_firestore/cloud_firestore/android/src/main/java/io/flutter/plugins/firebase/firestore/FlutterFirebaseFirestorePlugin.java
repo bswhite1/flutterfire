@@ -208,6 +208,7 @@ public class FlutterFirebaseFirestorePlugin
   }
 
   private Task<Void> batchCommit(Map<String, Object> arguments) {
+    System.out.println("Entered batchCommit");
     return Tasks.call(
         cachedThreadPool,
         () -> {
@@ -225,6 +226,8 @@ public class FlutterFirebaseFirestorePlugin
             Map<String, Object> data = (Map<String, Object>) write.get("data");
 
             DocumentReference documentReference = firestore.document(path);
+
+            System.out.println("batchCommit path: " + path + " type: " + type);
 
             switch (type) {
               case "DELETE":

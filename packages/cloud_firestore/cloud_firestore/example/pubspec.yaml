@@ -1,35 +1,33 @@
-name: cloud_firestore_example
-description: Demonstrates how to use the firestore plugin.
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "Demonstrates how to use the firestore plugin."
+name: "cloud_firestore_example"
+dependencies: 
+  cloud_firestore: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_firestore\\cloud_firestore"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  cloud_firestore: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_firestore\\cloud_firestore"
+  cloud_firestore_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_firestore\\cloud_firestore_platform_interface"
+  cloud_firestore_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\cloud_firestore\\cloud_firestore_web"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_core_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_web"
+dev_dependencies: 
+  drive: "0.0.1-6.0.pre"
+  test: "any"
+  flutter_driver: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.12.13+hotfix.4"
-
-dependencies:
-  cloud_firestore:
-    path: ../
-  firebase_core:
-    path: ../../../firebase_core/firebase_core
-  flutter:
-    sdk: flutter
-
-dependency_overrides:
-  cloud_firestore_platform_interface:
-    path: ../../cloud_firestore_platform_interface
-  cloud_firestore_web:
-    path: ../../cloud_firestore_web
-  firebase_core:
-    path: ../../../firebase_core/firebase_core
-  firebase_core_platform_interface:
-    path: ../../../firebase_core/firebase_core_platform_interface
-  firebase_core_web:
-    path: ../../../firebase_core/firebase_core_web
-
-dev_dependencies:
-  drive: 0.0.1-6.0.pre
-  flutter_driver:
-    sdk: flutter
-  test: any
-
-flutter:
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
   uses-material-design: true

@@ -1,35 +1,40 @@
-name: firebase_crashlytics
-description:
-  Flutter plugin for Firebase Crashlytics. It reports uncaught errors to the
-  Firebase console.
-version: 2.0.0
-homepage: https://firebase.flutter.dev/docs/crashlytics/overview
-repository: https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_crashlytics/firebase_crashlytics
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "Flutter plugin for Firebase Crashlytics. It reports uncaught errors to the Firebase console."
+homepage: "https://firebase.flutter.dev/docs/crashlytics/overview"
+name: "firebase_crashlytics"
+repository: "https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_crashlytics/firebase_crashlytics"
+version: "2.0.0"
+dependencies: 
+  stack_trace: "^1.10.0"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_crashlytics_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_crashlytics\\firebase_crashlytics_platform_interface"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_crashlytics_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_crashlytics\\firebase_crashlytics_platform_interface"
+dev_dependencies: 
+  test: "any"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.12.13+hotfix.5"
-
-dependencies:
-  firebase_core: ^1.0.3
-  firebase_core_platform_interface: ^4.0.0
-  firebase_crashlytics_platform_interface: ^3.0.0
-  flutter:
-    sdk: flutter
-  stack_trace: ^1.10.0
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  test: any
-
-flutter:
-  plugin:
-    platforms:
-      android:
-        package: io.flutter.plugins.firebase.crashlytics
-        pluginClass: FlutterFirebaseCrashlyticsPlugin
-      ios:
-        pluginClass: FLTFirebaseCrashlyticsPlugin
-      macos:
-        pluginClass: FLTFirebaseCrashlyticsPlugin
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
+  plugin: 
+    platforms: 
+      android: 
+        package: "io.flutter.plugins.firebase.crashlytics"
+        pluginClass: "FlutterFirebaseCrashlyticsPlugin"
+      ios: 
+        pluginClass: "FLTFirebaseCrashlyticsPlugin"
+      macos: 
+        pluginClass: "FLTFirebaseCrashlyticsPlugin"

@@ -1,32 +1,33 @@
-name: firebase_ml_custom
-description: Flutter plugin for Firebase Machine Learning Custom Model support.
-version: 0.2.0
-homepage: https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_ml_custom
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "Flutter plugin for Firebase Machine Learning Custom Model support."
+homepage: "https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_ml_custom"
+name: "firebase_ml_custom"
+version: "0.2.0"
+dependencies: 
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+dev_dependencies: 
+  path: "^1.6.2"
+  path_provider: "^0.5.0+1"
+  pedantic: "^1.8.0"
+  test: "any"
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  flutter_driver: 
+    sdk: "flutter"
+  flutter_test: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.10.0"
-
-dependencies:
-  flutter:
-    sdk: flutter
-
-dev_dependencies:
-  firebase_core: ^1.0.3
-  flutter_driver:
-    sdk: flutter
-  flutter_test:
-    sdk: flutter
-  path: ^1.6.2
-  path_provider: ^0.5.0+1
-  pedantic: ^1.8.0
-  test: any
-
-flutter:
-  plugin:
-    platforms:
-      android:
-        package: io.flutter.plugins.firebasemlcustom
-        pluginClass: FirebaseMLCustomPlugin
-      ios:
-        pluginClass: FLTFirebaseMLCustomPlugin
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
+  plugin: 
+    platforms: 
+      android: 
+        package: "io.flutter.plugins.firebasemlcustom"
+        pluginClass: "FirebaseMLCustomPlugin"
+      ios: 
+        pluginClass: "FLTFirebaseMLCustomPlugin"

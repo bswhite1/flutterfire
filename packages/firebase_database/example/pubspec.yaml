@@ -1,32 +1,30 @@
-name: firebase_database_example
-description: Demonstrates how to use the firebase_database plugin.
-
-environment:
-  sdk: ">=2.12.0 <3.0.0"
+# Generated file - do not commit this file.
+description: "Demonstrates how to use the firebase_database plugin."
+name: "firebase_database_example"
+dependencies: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_database: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_database"
+  flutter: 
+    sdk: "flutter"
+dependency_overrides: 
+  firebase_core: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core"
+  firebase_core_platform_interface: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_platform_interface"
+  firebase_core_web: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_core\\firebase_core_web"
+  firebase_database: 
+    path: "C:\\Users\\Ben White\\Documents\\git\\flutterfire\\packages\\firebase_database"
+dev_dependencies: 
+  e2e: "^0.6.1"
+  pedantic: "^1.8.0"
+  test: "any"
+  flutter_driver: 
+    sdk: "flutter"
+environment: 
   flutter: ">=1.9.1+hotfix.2"
-
-dependencies:
-  firebase_core:
-    path: ../../firebase_core/firebase_core
-  firebase_database:
-    path: ../
-  flutter:
-    sdk: flutter
-
-dependency_overrides:
-  firebase_core:
-    path: ../../firebase_core/firebase_core
-  firebase_core_platform_interface:
-    path: ../../firebase_core/firebase_core_platform_interface
-  firebase_core_web:
-    path: ../../firebase_core/firebase_core_web
-
-dev_dependencies:
-  e2e: ^0.6.1
-  flutter_driver:
-    sdk: flutter
-  pedantic: ^1.8.0
-  test: any
-
-flutter:
+  sdk: ">=2.12.0 <3.0.0"
+flutter: 
   uses-material-design: true
