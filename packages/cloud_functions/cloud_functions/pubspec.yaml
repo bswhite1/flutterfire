@@ -9,10 +9,14 @@ environment:
   flutter: ">=1.12.13+hotfix.5"
 
 dependencies:
-  cloud_functions_platform_interface: ^5.0.8
-  cloud_functions_web: ^4.0.10
-  firebase_core: ^1.4.0
-  firebase_core_platform_interface: ^4.0.1
+  cloud_functions_platform_interface:
+    path: ../cloud_functions_platform_interface
+  cloud_functions_web:
+    path: ../cloud_functions_web
+  firebase_core:
+    path: ../../firebase_core/firebase_core
+  firebase_core_platform_interface:
+    path: ../../firebase_core/firebase_core_platform_interface
   flutter:
     sdk: flutter
 

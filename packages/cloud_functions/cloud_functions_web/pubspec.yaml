@@ -10,9 +10,12 @@ environment:
   flutter: ">=1.12.13+hotfix.4"
 
 dependencies:
-  cloud_functions_platform_interface: ^5.0.8
-  firebase_core: ^1.4.0
-  firebase_core_web: ^1.1.0
+  cloud_functions_platform_interface:
+    path: ../cloud_functions_platform_interface
+  firebase_core:
+    path: ../../firebase_core/firebase_core
+  firebase_core_web:
+    path: ../../firebase_core/firebase_core_web
   flutter:
     sdk: flutter
   flutter_web_plugins:
@@ -20,7 +23,8 @@ dependencies:
   js: ^0.6.3
 
 dev_dependencies:
-  firebase_core_platform_interface: ^4.0.1
+  firebase_core_platform_interface:
+    path: ../../firebase_core/firebase_core_platform_interface
   flutter_test:
     sdk: flutter
   mockito: ^5.0.0
