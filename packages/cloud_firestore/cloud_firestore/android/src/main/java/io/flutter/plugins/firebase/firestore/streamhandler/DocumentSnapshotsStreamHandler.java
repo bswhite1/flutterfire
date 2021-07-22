@@ -2,6 +2,7 @@ package io.flutter.plugins.firebase.firestore.streamhandler;
 
 import static io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestorePlugin.DEFAULT_ERROR_CODE;
 
+import android.util.Log;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.MetadataChanges;
@@ -28,6 +29,10 @@ public class DocumentSnapshotsStreamHandler implements StreamHandler {
     DocumentReference documentReference =
         (DocumentReference) Objects.requireNonNull(argumentsMap.get("reference"));
 
+    Log.w(
+      "DocumentSnapshotsStreamHandler",
+      "Entered OnListen");
+
     listenerRegistration =
         documentReference.addSnapshotListener(
             metadataChanges,
@@ -36,6 +41,10 @@ public class DocumentSnapshotsStreamHandler implements StreamHandler {
                 Map<String, String> exceptionDetails = ExceptionConverter.createDetails(exception);
                 events.error(DEFAULT_ERROR_CODE, exception.getMessage(), exceptionDetails);
                 events.endOfStream();
+
+                Log.e(
+                  "DocumentSnapshotsStreamHandler",
+                  "OnListen exception: " + exception.getMessage());
 
                 onCancel(null);
               } else {

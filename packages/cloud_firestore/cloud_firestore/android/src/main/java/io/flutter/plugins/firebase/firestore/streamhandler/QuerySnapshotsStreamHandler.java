@@ -10,6 +10,7 @@ import io.flutter.plugin.common.EventChannel.StreamHandler;
 import io.flutter.plugins.firebase.firestore.utils.ExceptionConverter;
 import java.util.Map;
 import java.util.Objects;
+import android.util.Log;
 
 public class QuerySnapshotsStreamHandler implements StreamHandler {
 
@@ -32,6 +33,10 @@ public class QuerySnapshotsStreamHandler implements StreamHandler {
           "An error occurred while parsing query arguments, see native logs for more information. Please report this issue.");
     }
 
+    Log.w(
+      "QuerySnapshotsStreamHandler",
+      "Entered OnListen");
+
     listenerRegistration =
         query.addSnapshotListener(
             metadataChanges,
@@ -40,6 +45,10 @@ public class QuerySnapshotsStreamHandler implements StreamHandler {
                 Map<String, String> exceptionDetails = ExceptionConverter.createDetails(exception);
                 events.error(DEFAULT_ERROR_CODE, exception.getMessage(), exceptionDetails);
                 events.endOfStream();
+
+                Log.e(
+                  "QuerySnapshotsStreamHandler",
+                  "OnListen exception: " + exception.getMessage());
 
                 onCancel(null);
               } else {
