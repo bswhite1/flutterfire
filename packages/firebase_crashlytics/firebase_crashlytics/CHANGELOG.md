@@ -1,3 +1,33 @@
+## 2.3.0
+
+ - **FEAT**: support initializing default `FirebaseApp` instances from Dart (#6549).
+
+## 2.2.5
+
+ - Update a dependency to the latest release.
+
+## 2.2.4
+
+ - **REFACTOR**: remove deprecated Flutter Android v1 Embedding usages, including in example app (#7158).
+
+## 2.2.3
+
+ - **FIX**: switch usage of `dumpErrorToConsole` to `presentError` to remove duplicate logging (#7046).
+ - **CHORE**: remove unused deprecated V1 embedding for android (#7127).
+
+## 2.2.2
+
+ - Update a dependency to the latest release.
+
+## 2.2.1
+
+ - Update a dependency to the latest release.
+
+## 2.2.0
+
+ - **STYLE**: enable additional lint rules (#6832).
+ - **FEAT**: lower iOS & macOS deployment targets for relevant plugins (#6757).
+
 ## 2.1.1
 
  - **FIX**: issue where build would fail with missing header (#6628).

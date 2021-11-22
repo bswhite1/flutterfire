@@ -1,3 +1,27 @@
+## 4.0.6
+
+ - Update a dependency to the latest release.
+
+## 4.0.5
+
+ - Update a dependency to the latest release.
+
+## 4.0.4
+
+ - Update a dependency to the latest release.
+
+## 4.0.3
+
+ - Update a dependency to the latest release.
+
+## 4.0.2
+
+ - Update a dependency to the latest release.
+
+## 4.0.1
+
+ - Update a dependency to the latest release.
+
 ## 4.0.0
 
 > Note: This release has breaking changes.

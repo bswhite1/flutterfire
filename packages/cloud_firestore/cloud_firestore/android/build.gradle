@@ -22,7 +22,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.4'
+        classpath 'com.android.tools.build:gradle:7.0.2'
     }
 }
 
@@ -53,13 +53,13 @@ def getRootProjectExtOrCoreProperty(name, firebaseCoreProject) {
 }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 19
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
@@ -68,8 +68,8 @@ android {
     dependencies {
         api firebaseCoreProject
         implementation platform("com.google.firebase:firebase-bom:${getRootProjectExtOrCoreProperty("FirebaseSDKVersion", firebaseCoreProject)}")
-        implementation 'com.google.firebase:firebase-firestore:99.0.2-SNAPSHOT'
-        implementation 'androidx.annotation:annotation:1.1.0'
+        implementation 'com.google.firebase:firebase-firestore'
+        implementation 'androidx.annotation:annotation:1.2.0'
     }
 }
 

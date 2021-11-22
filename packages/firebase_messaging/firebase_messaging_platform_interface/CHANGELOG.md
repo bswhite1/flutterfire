@@ -1,3 +1,28 @@
+## 3.0.9
+
+ - Update a dependency to the latest release.
+
+## 3.0.8
+
+ - **FIX**: Add Android implementation to get notification permissions (#7168).
+
+## 3.0.7
+
+ - Update a dependency to the latest release.
+
+## 3.0.6
+
+ - Update a dependency to the latest release.
+
+## 3.0.5
+
+ - Update a dependency to the latest release.
+
+## 3.0.4
+
+ - **STYLE**: enable additional lint rules (#6832).
+ - **FIX**: critical of sound causing a hidden error (#6505).
+
 ## 3.0.3
 
  - Update a dependency to the latest release.

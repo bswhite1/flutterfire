@@ -1,3 +1,4 @@
+// ignore_for_file: require_trailing_commas
 // Copyright 2020 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
@@ -14,9 +15,7 @@ import 'interop/functions.dart' as functions_interop;
 class FirebaseFunctionsWeb extends FirebaseFunctionsPlatform {
   /// The entry point for the [FirebaseFunctionsWeb] class.
   FirebaseFunctionsWeb({FirebaseApp? app, required String region})
-      : _webFunctions = functions_interop.getFunctionsInstance(
-            core_interop.app(app?.name), region),
-        super(app, region);
+      : super(app, region);
 
   /// Stub initializer to allow the [registerWith] to create an instance without
   /// registering the web delegates or listeners.
@@ -25,7 +24,13 @@ class FirebaseFunctionsWeb extends FirebaseFunctionsPlatform {
         super(null, 'us-central1');
 
   /// Instance of functions from the web plugin
-  final functions_interop.Functions? _webFunctions;
+  functions_interop.Functions? _webFunctions;
+
+  /// Lazily initialize [_webFunctions] on first method call
+  functions_interop.Functions get _delegate {
+    return _webFunctions ??= functions_interop.getFunctionsInstance(
+        core_interop.app(app?.name), region);
+  }
 
   /// Create the default instance of the [FirebaseFunctionsPlatform] as a [FirebaseFunctionsWeb]
   static void registerWith(Registrar registrar) {
@@ -46,6 +51,6 @@ class FirebaseFunctionsWeb extends FirebaseFunctionsPlatform {
   @override
   HttpsCallablePlatform httpsCallable(
       String? origin, String name, HttpsCallableOptions options) {
-    return HttpsCallableWeb(this, _webFunctions!, origin, name, options);
+    return HttpsCallableWeb(this, _delegate, origin, name, options);
   }
 }

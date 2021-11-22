@@ -1,3 +1,4 @@
+// ignore_for_file: require_trailing_commas
 // Copyright 2020 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
@@ -41,20 +42,20 @@ FirebaseException coreNotInitialized() {
 
   if (kIsWeb) {
     message = '''
-Firebase has not been correctly initialized. Have you added the Firebase import scripts to your index.html file? 
-    
+Firebase has not been correctly initialized.
+
 View the Web Installation documentation for more information: https://firebase.flutter.dev/docs/installation/web
     ''';
   } else if (defaultTargetPlatform == TargetPlatform.android) {
     message = '''
-Firebase has not been correctly initialized. Have you added the "google-services.json" file to the project? 
-    
+Firebase has not been correctly initialized. Have you added the "google-services.json" file to the project?
+
 View the Android Installation documentation for more information: https://firebase.flutter.dev/docs/installation/android
 ''';
   } else if (defaultTargetPlatform == TargetPlatform.iOS) {
     message = '''
-Firebase has not been correctly initialized. Have you added the "GoogleService-Info.plist" file to the project? 
-    
+Firebase has not been correctly initialized. Have you added the "GoogleService-Info.plist" file to the project?
+
 View the iOS Installation documentation for more information: https://firebase.flutter.dev/docs/installation/ios
 ''';
   } else {

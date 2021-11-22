@@ -1,3 +1,33 @@
+## 10.1.0
+
+ - **FEAT**: support initializing default `FirebaseApp` instances from Dart (#6549).
+
+## 10.0.7
+
+ - Update a dependency to the latest release.
+
+## 10.0.6
+
+ - **REFACTOR**: remove deprecated Flutter Android v1 Embedding usages, including in example app (#7158).
+ - **STYLE**: macOS & iOS; explicitly include header that defines `TARGET_OS_OSX` (#7116).
+
+## 10.0.5
+
+ - **FIX**: remove https port number from `downloadUrl` for `iOS` (#7097).
+
+## 10.0.4
+
+ - **FIX**: fix localhost url parsing for Storage Emulator (#7003).
+ - **CHORE**: update gradle version across packages (#7054).
+
+## 10.0.3
+
+ - **FIX**: accept google storage bucket urls (#6848).
+
+## 10.0.2
+
+ - Update a dependency to the latest release.
+
 ## 10.0.1
 
  - **FIX**: reinstate deprecated emulator apis (#6626).

@@ -13,7 +13,15 @@ bool USE_FIRESTORE_EMULATOR = false;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: 'AIzaSyAHAsf51D0A407EklG1bs-5wA7EbyfNFg0',
+      appId: '1:448618578101:ios:2bc5c1fe2ec336f8ac3efc',
+      messagingSenderId: '448618578101',
+      projectId: 'react-native-firebase-testing',
+    ),
+  );
+
   if (USE_FIRESTORE_EMULATOR) {
     FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
   }
@@ -88,21 +96,7 @@ class FilmList extends StatefulWidget {
 }
 
 class _FilmListState extends State<FilmList> {
-  late Query<Movie> _moviesQuery;
-  late Stream<QuerySnapshot<Movie>> _movies;
-
-  @override
-  void initState() {
-    super.initState();
-    _updateMoviesQuery(MovieQuery.year);
-  }
-
-  void _updateMoviesQuery(MovieQuery query) {
-    setState(() {
-      _moviesQuery = moviesRef.queryBy(query);
-      _movies = _moviesQuery.snapshots();
-    });
-  }
+  MovieQuery query = MovieQuery.year;
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +123,7 @@ class _FilmListState extends State<FilmList> {
         ),
         actions: <Widget>[
           PopupMenuButton<MovieQuery>(
-            onSelected: _updateMoviesQuery,
+            onSelected: (value) => setState(() => query = value),
             icon: const Icon(Icons.sort),
             itemBuilder: (BuildContext context) {
               return [
@@ -174,7 +168,7 @@ class _FilmListState extends State<FilmList> {
         ],
       ),
       body: StreamBuilder<QuerySnapshot<Movie>>(
-        stream: _movies,
+        stream: moviesRef.queryBy(query).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(
