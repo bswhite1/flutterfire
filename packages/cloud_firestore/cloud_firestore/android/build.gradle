@@ -13,10 +13,13 @@ repositories {
 
 buildscript {
     repositories {
+        mavenLocal()
+        flatDir{
+          dirs '/Users/bwhite/.M2/repository'
+        }
         maven{
           url '/Users/bwhite/.M2/repository'
         }
-        mavenLocal()
         google()
         mavenCentral()
     }
@@ -28,10 +31,13 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal()
+        flatDir{
+          dirs '/Users/bwhite/.M2/repository'
+        }
         maven{
           url '/Users/bwhite/.M2/repository'
         }
-        mavenLocal()
         google()
         mavenCentral()
     }
@@ -68,7 +74,7 @@ android {
     dependencies {
         api firebaseCoreProject
         implementation platform("com.google.firebase:firebase-bom:${getRootProjectExtOrCoreProperty("FirebaseSDKVersion", firebaseCoreProject)}")
-        implementation 'com.google.firebase:firebase-firestore'
+        implementation 'com.google.firebase:firebase-firestore:99.0.2-SNAPSHOT'
         implementation 'androidx.annotation:annotation:1.2.0'
     }
 }

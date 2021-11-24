@@ -371,7 +371,7 @@ public class FlutterFirebaseFirestorePlugin
         () -> {
           FirebaseFirestore firestore =
               (FirebaseFirestore) Objects.requireNonNull(arguments.get("firestore"));
-          return Tasks.await(firestore.get());
+          return Tasks.await(firestore.waitForPendingWrites());
         });
   }
 
