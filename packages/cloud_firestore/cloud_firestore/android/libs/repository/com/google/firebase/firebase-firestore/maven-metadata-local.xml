@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.google.firebase</groupId>
+  <artifactId>firebase-firestore</artifactId>
+  <versioning>
+    <latest>99.0.3-SNAPSHOT</latest>
+    <versions>
+      <version>99.0.3-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20211130160104</lastUpdated>
+  </versioning>
+</metadata>

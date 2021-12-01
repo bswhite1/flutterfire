@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.google.firebase</groupId>
+  <artifactId>firebase-firestore</artifactId>
+  <version>99.0.3-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <localCopy>true</localCopy>
+    </snapshot>
+    <lastUpdated>20211130160104</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <classifier>sources</classifier>
+        <extension>jar</extension>
+        <value>99.0.3-SNAPSHOT</value>
+        <updated>20211130160104</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>aar</extension>
+        <value>99.0.3-SNAPSHOT</value>
+        <updated>20211130160104</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>99.0.3-SNAPSHOT</value>
+        <updated>20211130160104</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
