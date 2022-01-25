@@ -46,8 +46,7 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
     @SuppressWarnings("unchecked")
     Map<String, Object> argumentsMap = (Map<String, Object>) arguments;
 
-    FirebaseFirestore firestore =
-        (FirebaseFirestore) Objects.requireNonNull(argumentsMap.get("firestore"));
+    FirebaseFirestore firestore = (FirebaseFirestore) Objects.requireNonNull(argumentsMap.get("firestore"));
 
     Object value = argumentsMap.get("timeout");
     Long timeout;
@@ -89,15 +88,13 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
                 return FlutterFirebaseFirestoreTransactionResult.complete();
               }
 
-              List<Map<String, Object>> commands =
-                  (List<Map<String, Object>>) response.get("commands");
+              List<Map<String, Object>> commands = (List<Map<String, Object>>) response.get("commands");
 
               for (Map<String, Object> command : commands) {
                 String type = (String) Objects.requireNonNull(command.get("type"));
                 String path = (String) Objects.requireNonNull(command.get("path"));
                 DocumentReference documentReference = firestore.document(path);
 
-                @SuppressWarnings("unchecked")
                 Map<String, Object> data = (Map<String, Object>) command.get("data");
 
                 switch (type) {
@@ -107,31 +104,29 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
                   case "UPDATE":
                     transaction.update(documentReference, Objects.requireNonNull(data));
                     break;
-                  case "SET":
-                    {
+                  case "SET": {
+                    // @SuppressWarnings("unchecked")
+                    Map<String, Object> options = (Map<String, Object>) Objects.requireNonNull(command.get("options"));
+                    SetOptions setOptions = null;
+
+                    if (options.get("merge") != null && (boolean) options.get("merge")) {
+                      setOptions = SetOptions.merge();
+                    } else if (options.get("mergeFields") != null) {
                       @SuppressWarnings("unchecked")
-                      Map<String, Object> options =
-                          (Map<String, Object>) Objects.requireNonNull(command.get("options"));
-                      SetOptions setOptions = null;
-
-                      if (options.get("merge") != null && (boolean) options.get("merge")) {
-                        setOptions = SetOptions.merge();
-                      } else if (options.get("mergeFields") != null) {
-                        @SuppressWarnings("unchecked")
-                        List<FieldPath> fieldPathList =
-                            (List<FieldPath>) Objects.requireNonNull(options.get("mergeFields"));
-                        setOptions = SetOptions.mergeFieldPaths(fieldPathList);
-                      }
-
-                      if (setOptions == null) {
-                        transaction.set(documentReference, Objects.requireNonNull(data));
-                      } else {
-                        transaction.set(
-                            documentReference, Objects.requireNonNull(data), setOptions);
-                      }
-
-                      break;
+                      List<FieldPath> fieldPathList = (List<FieldPath>) Objects
+                          .requireNonNull(options.get("mergeFields"));
+                      setOptions = SetOptions.mergeFieldPaths(fieldPathList);
                     }
+
+                    if (setOptions == null) {
+                      transaction.set(documentReference, Objects.requireNonNull(data));
+                    } else {
+                      transaction.set(
+                          documentReference, Objects.requireNonNull(data), setOptions);
+                    }
+
+                    break;
+                  }
                 }
               }
               return FlutterFirebaseFirestoreTransactionResult.complete();
@@ -140,8 +135,8 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
             task -> {
               final HashMap<String, Object> map = new HashMap<>();
               if (task.getException() != null || task.getResult().exception != null) {
-                final @Nullable Exception exception =
-                    task.getException() != null ? task.getException() : task.getResult().exception;
+                final @Nullable Exception exception = task.getException() != null ? task.getException()
+                    : task.getResult().exception;
                 map.put("appName", firestore.getApp().getName());
                 map.put("error", ExceptionConverter.createDetails(exception));
               } else if (task.getResult() != null) {

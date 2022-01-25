@@ -2,13 +2,15 @@ group 'io.flutter.plugins.firebase.cloudfirestore'
 version '1.0-SNAPSHOT'
 
 repositories {
+  mavenLocal()
   maven {
     url 'repository'
   }
 }
 
 buildscript {
-    repositories {
+      repositories {
+        mavenLocal()
         maven {
           url 'libs/repository'
         }
@@ -23,6 +25,7 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenLocal()
         maven {
           url 'libs/repository'
         }
@@ -62,7 +65,7 @@ android {
     dependencies {
         api firebaseCoreProject
         implementation platform("com.google.firebase:firebase-bom:${getRootProjectExtOrCoreProperty("FirebaseSDKVersion", firebaseCoreProject)}")
-        implementation 'com.google.firebase:firebase-firestore:99.0.3-SNAPSHOT'
+        implementation 'com.google.firebase:firebase-firestore:99.0.14-SNAPSHOT'
         implementation 'androidx.annotation:annotation:1.2.0'
     }
 }
