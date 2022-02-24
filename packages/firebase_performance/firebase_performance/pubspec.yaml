@@ -5,7 +5,10 @@ description:
   iOS.
 homepage: https://firebase.flutter.dev/docs/performance/overview
 repository: https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_performance
-version: 0.7.1+4
+version: 0.8.0+6
+
+false_secrets:
+  - example/**
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -14,6 +17,9 @@ environment:
 dependencies:
   firebase_core:
     path: ../../firebase_core/firebase_core
+  firebase_core_platform_interface: ^4.2.4
+  firebase_performance_platform_interface: ^0.1.1
+  firebase_performance_web: ^0.1.0+6
   flutter:
     sdk: flutter
 
@@ -33,8 +39,8 @@ flutter:
   plugin:
     platforms:
       android:
-        package: io.flutter.plugins.firebaseperformance
-        pluginClass: FirebasePerformancePlugin
+        package: io.flutter.plugins.firebase.performance
+        pluginClass: FlutterFirebasePerformancePlugin
       ios:
         pluginClass: FLTFirebasePerformancePlugin
       web:

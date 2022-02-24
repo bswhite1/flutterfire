@@ -3,10 +3,6 @@ title: App Check
 sidebar_label: Usage
 ---
 
-:::caution
-FlutterFire App Check is an early access preview plugin; therefore APIs may change in a future release.
-:::
-
 Once installed, you can access the [`firebase_app_check`](!firebase_app_check) plugin by importing
 it in your Dart code:
 
@@ -14,8 +10,20 @@ it in your Dart code:
 import 'package:firebase_app_check/firebase_app_check.dart';
 ```
 
+To create a new Firebase App Check instance, call the instance getter on `FirebaseAppCheck`:
 
-### Activating the default provider
+```dart
+FirebaseAppCheck appCheck = FirebaseAppCheck.instance;
+```
+
+By default, this allows you to interact with Firebase App Check using the default Firebase App used whilst installing FlutterFire on your platform. If however you'd like to use a secondary Firebase App, use the `instanceFor` method:
+
+```dart
+FirebaseApp secondaryApp = Firebase.app('SecondaryApp');
+FirebaseAppCheck appCheck = FirebaseAppCheck.instanceFor(app: secondaryApp);
+```
+
+## Activate the default provider
 
 To activate the default App Check attestation provider you must call activate before any usages of your Firebase
 services such as Storage, but after calling `Firebase.initializeApp()`;
@@ -30,9 +38,44 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await FirebaseAppCheck.instance.activate(webRecaptchaSiteKey: 'recaptcha-v3-site-key');
+  await FirebaseAppCheck.instance.activate(
+    webRecaptchaSiteKey: 'recaptcha-v3-site-key',
+  );
   runApp(App());
 }
+```
+
+## Getting the current token
+
+To get the current token associated with App Check, call the `getToken` method:
+
+```dart
+String? token = await FirebaseAppCheck.instance.getToken();
+print(token);
+```
+
+Optionally, you can force the token to refresh when fetching:
+
+```dart
+String? token = await FirebaseAppCheck.instance.getToken(true);
+```
+
+## Listen to token changes
+
+To subscribe to App Check token changes, listen to the `onTokenChange` `Stream`:
+
+```dart
+FirebaseAppCheck.instance.onTokenChange.listen((token) {
+  print(token);
+});
+```
+
+## Automatic refreshing
+
+To enable the SDK to automatically refresh the App Check token when required, call the `setTokenAutoRefreshEnabled` method:
+
+```dart
+await FirebaseAppCheck.instance.setTokenAutoRefreshEnabled(true);
 ```
 
 ## Debugging
@@ -195,3 +238,39 @@ After you register the token, Firebase backend services will accept it as valid.
 Because this token allows access to your Firebase resources without a valid device, it is crucial that you keep it private.
 Don't commit it to a public repository, and if a registered token is ever compromised, revoke it immediately in the
 Firebase console.
+
+## App Check for Functions
+
+Ensure you have [App Check for Functions enabled](https://firebase.google.com/docs/app-check/cloud-functions), and check the context for the App Check token:
+
+```
+exports.yourCallableFunction = functions.https.onCall((data, context) => {
+  // context.app will be undefined if the request doesn't include a valid
+  // App Check token.
+ 
+  if (context.app == undefined) {
+    throw new functions.https.HttpsError(
+        'failed-precondition',
+        'The function must be called from an App Check verified app.')
+  }
+
+  // Your function logic follows.
+});
+
+```
+
+You may also use the [Firebase Local Emulator Suite](https://firebase.google.com/docs/emulator-suite) to test your Cloud Function. You simply have to add another conditional check (i.e. `!process.env.FUNCTIONS_EMULATOR`) to stop errors from throwing whilst testing:
+
+```
+exports.yourCallableFunction = functions.https.onCall((data, context) => {
+  // context.app will be undefined if the request doesn't include a valid
+  // App Check token.
+ 
+  if (context.app == undefined && !process.env.FUNCTIONS_EMULATOR) {
+    throw new functions.https.HttpsError(
+        'failed-precondition',
+        'The function must be called from an App Check verified app.')
+  }
+  // Your function logic follows.
+});
+```

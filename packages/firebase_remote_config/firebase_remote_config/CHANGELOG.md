@@ -1,13 +1,33 @@
-## 1.0.0-dev.2
+## 2.0.1
 
- - **FEAT**: support initializing default `FirebaseApp` instances from Dart (#6549).
+ - **FIX**: add missing `default_package` entry for web in `pubspec.yaml` (#8139). ([5e6b570f](https://github.com/FirebaseExtended/flutterfire/commit/5e6b570f8445b0bd2eac8b112a2a6b35ff69b7b6))
 
-## 1.0.0-dev.1
+## 2.0.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **REFACTOR**: deprecated `RemoteConfig` in favour of `FirebaseRemoteConfig` to align Firebase services naming with other plugins. ([99b932be](https://github.com/FirebaseExtended/flutterfire/commit/99b932bea6d604d500bb29841ad59177165dee60))
+
+## 1.0.4
+
+ - **FIX**: bump Android `compileSdkVersion` to 31 (#7726). ([a9562bac](https://github.com/FirebaseExtended/flutterfire/commit/a9562bac60ba927fb3664a47a7f7eaceb277dca6))
+
+## 1.0.3
 
  - Update a dependency to the latest release.
 
-## 1.0.0-dev.0
+## 1.0.2
 
+ - Update a dependency to the latest release.
+
+## 1.0.1
+
+ - **DOCS**: Fix typos and remove unused imports (#7504).
+
+## 1.0.0
+
+ - **FEAT**: automatically inject Firebase JS SDKs (#7359).
+ - **FEAT**: support initializing default `FirebaseApp` instances from Dart (#6549).
  - **FEAT**: Add initial platform support for Web.
  - Bump "firebase_remote_config" to stable versioning `0.x.x` -> `x.x.x`.
 

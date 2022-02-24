@@ -3,10 +3,13 @@ description: Flutter plugin for Firebase Core, enabling connecting to multiple
   Firebase apps.
 homepage: https://firebase.flutter.dev/docs/core/usage
 repository: https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_core/firebase_core
-version: 1.10.0
+version: 1.13.0
+
+false_secrets:
+  - example/**
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"
   flutter: ">=1.12.13+hotfix.5"
 
 dependencies:
