@@ -1,3 +1,37 @@
+## 11.2.7
+
+ - **FIX**: Stream new token via onTokenRefresh when getToken invoked for iOS. (#8166). ([28b396b8](https://github.com/FirebaseExtended/flutterfire/commit/28b396b84e019a5247e70d0abeb1ba24bdff4bcb))
+
+## 11.2.6
+
+ - **FIX**: Set APNS token if user initializes Firebase app from Flutter. (#7610). ([dc4c2c1d](https://github.com/FirebaseExtended/flutterfire/commit/dc4c2c1d249abf214c8ec7d835af18c86d64b2f5))
+
+## 11.2.5
+
+ - **FIX**: bump Android `compileSdkVersion` to 31 (#7726). ([a9562bac](https://github.com/FirebaseExtended/flutterfire/commit/a9562bac60ba927fb3664a47a7f7eaceb277dca6))
+ - **DOCS**: Provide fallback for `messageId` field for web as JS SDK does not have. (#7234). ([4571abeb](https://github.com/FirebaseExtended/flutterfire/commit/4571abeb859124b8daa520583a8f23fd8e1182d6))
+
+## 11.2.4
+
+ - **FIX**: Return app constants for default app only on `Android`. (#7592). ([b803c425](https://github.com/FirebaseExtended/flutterfire/commit/b803c425b420acae155fea93a62ab9b3de4556a5))
+
+## 11.2.3
+
+ - Update a dependency to the latest release.
+
+## 11.2.2
+
+ - **DOCS**: Fix typos and remove unused imports (#7504).
+
+## 11.2.1
+
+ - Update a dependency to the latest release.
+
+## 11.2.0
+
+ - **REFACTOR**: migrate remaining examples & e2e tests to null-safety (#7393).
+ - **FEAT**: automatically inject Firebase JS SDKs (#7359).
+
 ## 11.1.0
 
  - **FEAT**: support initializing default `FirebaseApp` instances from Dart (#6549).

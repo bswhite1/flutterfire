@@ -10,6 +10,7 @@ import 'package:cloud_firestore_web/src/internals.dart';
 import 'package:cloud_firestore_web/src/load_bundle_task_web.dart';
 import 'package:cloud_firestore_web/src/utils/web_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core_web/firebase_core_web.dart';
 import 'package:firebase_core_web/firebase_core_web_interop.dart'
     as core_interop;
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -36,6 +37,7 @@ class FirebaseFirestoreWeb extends FirebaseFirestorePlatform {
 
   /// Called by PluginRegistry to register this plugin for Flutter Web
   static void registerWith(Registrar registrar) {
+    FirebaseCoreWeb.registerService('firestore');
     FirebaseFirestorePlatform.instance = FirebaseFirestoreWeb();
   }
 
@@ -61,7 +63,7 @@ class FirebaseFirestoreWeb extends FirebaseFirestorePlatform {
 
   @override
   Future<void> clearPersistence() {
-    return guard(_delegate.clearPersistence);
+    return convertWebExceptions(_delegate.clearPersistence);
   }
 
   @override
@@ -78,7 +80,7 @@ class FirebaseFirestoreWeb extends FirebaseFirestorePlatform {
 
   @override
   Future<void> disableNetwork() {
-    return guard(_delegate.disableNetwork);
+    return convertWebExceptions(_delegate.disableNetwork);
   }
 
   @override
@@ -87,7 +89,7 @@ class FirebaseFirestoreWeb extends FirebaseFirestorePlatform {
 
   @override
   Future<void> enableNetwork() {
-    return guard(_delegate.enableNetwork);
+    return convertWebExceptions(_delegate.enableNetwork);
   }
 
   @override
@@ -98,7 +100,7 @@ class FirebaseFirestoreWeb extends FirebaseFirestorePlatform {
   @override
   Future<T?> runTransaction<T>(TransactionHandler<T> transactionHandler,
       {Duration timeout = const Duration(seconds: 30)}) async {
-    await guard(() {
+    await convertWebExceptions(() {
       return _delegate.runTransaction((transaction) async {
         return transactionHandler(
             TransactionWeb(this, _delegate, transaction!));
@@ -147,20 +149,21 @@ class FirebaseFirestoreWeb extends FirebaseFirestorePlatform {
           firestore_interop.PersistenceSettings(
               synchronizeTabs: settings.synchronizeTabs);
 
-      return guard(() => _delegate.enablePersistence(interopSettings));
+      return convertWebExceptions(
+          () => _delegate.enablePersistence(interopSettings));
     }
 
-    return guard(_delegate.enablePersistence);
+    return convertWebExceptions(_delegate.enablePersistence);
   }
 
   @override
   Future<void> terminate() {
-    return guard(_delegate.terminate);
+    return convertWebExceptions(_delegate.terminate);
   }
 
   @override
   Future<void> waitForPendingWrites() {
-    return guard(_delegate.waitForPendingWrites);
+    return convertWebExceptions(_delegate.waitForPendingWrites);
   }
 
   @override

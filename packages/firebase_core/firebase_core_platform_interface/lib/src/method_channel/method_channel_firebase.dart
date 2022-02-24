@@ -105,8 +105,10 @@ class MethodChannelFirebase extends FirebasePlatform {
       // e.g. hot reloads/restarts).
       if (defaultApp != null && options != null) {
         if (options.apiKey != defaultApp.options.apiKey ||
-            options.databaseURL != defaultApp.options.databaseURL ||
-            options.storageBucket != defaultApp.options.storageBucket) {
+            (options.databaseURL != null &&
+                options.databaseURL != defaultApp.options.databaseURL) ||
+            (options.storageBucket != null &&
+                options.storageBucket != defaultApp.options.storageBucket)) {
           // Options are different; throw.
           throw duplicateApp(defaultFirebaseAppName);
         }
@@ -123,7 +125,17 @@ class MethodChannelFirebase extends FirebasePlatform {
 
     // Check whether the app has already been initialized
     if (appInstances.containsKey(name)) {
-      throw duplicateApp(name);
+      final existingApp = appInstances[name]!;
+      if (options!.apiKey != existingApp.options.apiKey ||
+          (options.databaseURL != null &&
+              options.databaseURL != existingApp.options.databaseURL) ||
+          (options.storageBucket != null &&
+              options.storageBucket != existingApp.options.storageBucket)) {
+        // Options are different; throw.
+        throw duplicateApp(name);
+      } else {
+        return existingApp;
+      }
     }
 
     _initializeFirebaseAppFromMap((await channel.invokeMapMethod(
