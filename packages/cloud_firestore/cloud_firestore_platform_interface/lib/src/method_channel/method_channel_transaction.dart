@@ -43,6 +43,8 @@ class MethodChannelTransaction extends TransactionPlatform {
     assert(_commands.isEmpty,
         'Transactions require all reads to be executed before all writes.');
 
+    print('MethodChannelTransaction calling Transaction#get');
+
     final Map<String, dynamic>? result = await MethodChannelFirebaseFirestore
         .channel
         .invokeMapMethod<String, dynamic>('Transaction#get', <String, dynamic>{
@@ -50,6 +52,9 @@ class MethodChannelTransaction extends TransactionPlatform {
       'transactionId': _transactionId,
       'reference': _firestore.doc(documentPath),
     });
+
+    print(
+        'MethodChannelTransaction Transaction#get returned: ${result.toString()}');
 
     return DocumentSnapshotPlatform(
       _firestore,

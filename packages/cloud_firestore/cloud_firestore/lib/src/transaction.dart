@@ -24,6 +24,7 @@ class Transaction {
   Future<DocumentSnapshot<T>> get<T extends Object?>(
     DocumentReference<T> documentReference,
   ) async {
+    print('transaction get path: ${documentReference.path}');
     DocumentSnapshotPlatform documentSnapshotPlatform =
         await _delegate.get(documentReference.path);
 
@@ -36,6 +37,8 @@ class Transaction {
 
     final withConverterDocRef =
         documentReference as _WithConverterDocumentReference<T>;
+
+    print('transaction get returning');
 
     return _WithConverterDocumentSnapshot<T>(
       snapshot,
@@ -68,6 +71,8 @@ class Transaction {
       'the document provided is from a different Firestore instance',
     );
 
+    print('transaction update path: ${documentReference.path}');
+
     return Transaction._(
       _firestore,
       _delegate.update(
@@ -98,6 +103,8 @@ class Transaction {
           documentReference as _WithConverterDocumentReference<T>;
       firestoreData = withConverterDoc._toFirestore(data, options);
     }
+
+    print('transaction set path: ${documentReference.path}');
 
     return Transaction._(
       _firestore,

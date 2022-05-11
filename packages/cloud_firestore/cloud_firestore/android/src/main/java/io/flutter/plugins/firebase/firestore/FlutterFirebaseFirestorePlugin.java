@@ -4,6 +4,7 @@
 
 package io.flutter.plugins.firebase.firestore;
 
+import android.util.Log;
 import android.app.Activity;
 import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.Task;
@@ -179,6 +180,8 @@ public class FlutterFirebaseFirestorePlugin
 
   private void transactionStoreResult(Map<String, Object> arguments) {
     String transactionId = (String) Objects.requireNonNull(arguments.get("transactionId"));
+
+    Log.w("transactionStoreResult", "transactionId: " + transactionId);
     @SuppressWarnings("unchecked")
     Map<String, Object> result =
         (Map<String, Object>) Objects.requireNonNull(arguments.get("result"));
@@ -391,6 +394,8 @@ public class FlutterFirebaseFirestorePlugin
         break;
       case "Transaction#create":
         final String transactionId = UUID.randomUUID().toString().toLowerCase(Locale.US);
+
+        Log.w("FlutterFirebaseFirestorePlugin", "Transaction#create calling TransactionStreamHandler transactionId: " + transactionId);
         final TransactionStreamHandler handler =
             new TransactionStreamHandler(
                 transaction -> transactions.put(transactionId, transaction));
