@@ -10,19 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'firebase_options.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // iOS requires you run in release mode to test dynamic links ("flutter run --release").
   await Firebase.initializeApp(
-    options: const FirebaseOptions(
-      apiKey: 'AIzaSyAHAsf51D0A407EklG1bs-5wA7EbyfNFg0',
-      appId: '1:448618578101:ios:3e76955ab6d49ecaac3efc',
-      messagingSenderId: '448618578101',
-      projectId: 'react-native-firebase-testing',
-      authDomain: 'react-native-firebase-testing.firebaseapp.com',
-      iosClientId:
-          '448618578101-4km55qmv55tguvnivgjdiegb3r0jquv5.apps.googleusercontent.com',
-    ),
+    options: DefaultFirebaseOptions.currentPlatform,
   );
 
   runApp(
@@ -52,8 +46,8 @@ class _MainScreenState extends State<_MainScreen> {
       'is properly setup. Look at firebase_dynamic_links/README.md for more '
       'details.';
 
-  final String DynamicLink = 'https://test-app/helloworld';
-  final String Link = 'https://reactnativefirebase.page.link/bFkn';
+  final String DynamicLink = 'https://example/helloworld';
+  final String Link = 'https://flutterfiretests.page.link/MEGs';
 
   @override
   void initState() {
@@ -76,14 +70,17 @@ class _MainScreenState extends State<_MainScreen> {
     });
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
-      uriPrefix: 'https://reactnativefirebase.page.link',
+      uriPrefix: 'https://flutterfiretests.page.link',
+      longDynamicLink: Uri.parse(
+        'https://flutterfiretests.page.link?efr=0&ibi=io.flutter.plugins.firebase.dynamiclinksexample&apn=io.flutter.plugins.firebase.dynamiclinksexample&imv=0&amv=0&link=https%3A%2F%2Fexample%2Fhelloworld&ofl=https://ofl-example.com',
+      ),
       link: Uri.parse(DynamicLink),
       androidParameters: const AndroidParameters(
         packageName: 'io.flutter.plugins.firebase.dynamiclinksexample',
         minimumVersion: 0,
       ),
       iosParameters: const IOSParameters(
-        bundleId: 'io.invertase.testing',
+        bundleId: 'io.flutter.plugins.firebase.dynamiclinksexample',
         minimumVersion: '0',
       ),
     );
@@ -163,7 +160,7 @@ class _MainScreenState extends State<_MainScreen> {
                   InkWell(
                     onTap: () async {
                       if (_linkMessage != null) {
-                        await launch(_linkMessage!);
+                        await launchUrl(Uri.parse(_linkMessage!));
                       }
                     },
                     onLongPress: () {

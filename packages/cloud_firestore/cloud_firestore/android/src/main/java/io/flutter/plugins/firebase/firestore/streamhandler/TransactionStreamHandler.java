@@ -1,3 +1,9 @@
+/*
+ * Copyright 2022, the Chromium project authors.  Please see the AUTHORS file
+ * for details. All rights reserved. Use of this source code is governed by a
+ * BSD-style license that can be found in the LICENSE file.
+ */
+
 package io.flutter.plugins.firebase.firestore.streamhandler;
 
 import android.util.Log;
@@ -11,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.FirebaseFirestoreException.Code;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.firestore.Transaction;
+import com.google.firebase.firestore.TransactionOptions;
 import io.flutter.plugin.common.EventChannel.EventSink;
 import io.flutter.plugin.common.EventChannel.StreamHandler;
 import io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreTransactionResult;
@@ -61,10 +68,16 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
       timeout = 5000L;
     }
 
+
     Log.w("TransactionStreamHandler", "timeout: " + timeout.toString());
+
+    // Always sent by the PlatformChannel
+    int maxAttempts = (int) argumentsMap.get("maxAttempts");
+
 
     firestore
         .runTransaction(
+            new TransactionOptions.Builder().setMaxAttempts(maxAttempts).build(),
             transaction -> {
               Log.w("TransactionStreamHandler", "entered firestore.runTransaction");
               onTransactionStartedListener.onStarted(transaction);

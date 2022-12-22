@@ -1,14 +1,15 @@
 name: firebase_performance_web
-description: A new Flutter package project.
-homepage: https://github.com/FirebaseExtended/flutterfire/tree/master/packages/firebase_performance/firebase_performance_web
-version: 0.1.0+6
+description: Web implementation of Firebase Performance monitoring.
+homepage: https://github.com/firebase/flutterfire/tree/master/packages/firebase_performance/firebase_performance_web
+version: 0.1.1+17
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"
   flutter: ">=1.20.0"
 
 dependencies:
-  firebase: ^9.0.1
+  _flutterfire_internals:
+    path: ../../_flutterfire_internals
   firebase_core:
     path: ../../firebase_core/firebase_core
   firebase_core_web:

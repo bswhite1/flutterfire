@@ -8,12 +8,14 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'firebase_config.dart';
+import 'firebase_options.dart';
 import 'tabs_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseConfig.platformOptions);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -111,6 +113,20 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> _testSetUserProperty() async {
     await widget.analytics.setUserProperty(name: 'regular', value: 'indeed');
     setMessage('setUserProperty succeeded');
+  }
+
+  Future<void> _testAppInstanceId() async {
+    String? id = await widget.analytics.appInstanceId;
+    if (id != null) {
+      setMessage('appInstanceId succeeded: $id');
+    } else {
+      setMessage('appInstanceId failed, consent declined');
+    }
+  }
+
+  Future<void> _testResetAnalyticsData() async {
+    await widget.analytics.resetAnalyticsData();
+    setMessage('resetAnalyticsData succeeded');
   }
 
   AnalyticsEventItem itemCreator() {
@@ -302,6 +318,14 @@ class _MyHomePageState extends State<MyHomePage> {
           MaterialButton(
             onPressed: _testSetUserProperty,
             child: const Text('Test setUserProperty'),
+          ),
+          MaterialButton(
+            onPressed: _testAppInstanceId,
+            child: const Text('Test appInstanceId'),
+          ),
+          MaterialButton(
+            onPressed: _testResetAnalyticsData,
+            child: const Text('Test resetAnalyticsData'),
           ),
           Text(
             _message,

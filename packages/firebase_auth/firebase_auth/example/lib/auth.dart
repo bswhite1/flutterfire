@@ -1,14 +1,15 @@
+// Copyright 2022, the Chromium project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth_example/config.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:github_sign_in/github_sign_in.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:twitter_login/twitter_login.dart';
 
 typedef OAuthSignIn = void Function();
 
@@ -84,17 +85,32 @@ class _AuthGateState extends State<AuthGate> {
   @override
   void initState() {
     super.initState();
-    if (kIsWeb) {
+    if (!kIsWeb && Platform.isMacOS) {
       authButtons = {
-        Buttons.Google: _signInWithGoogle,
-        Buttons.GitHub: _signInWithGitHub,
-        Buttons.Twitter: _signInWithTwitter,
+        Buttons.Apple: () => _handleMultiFactorException(
+              _signInWithApple,
+            ),
       };
     } else {
       authButtons = {
-        if (!Platform.isMacOS) Buttons.Google: _signInWithGoogle,
-        if (!Platform.isMacOS) Buttons.GitHub: _signInWithGitHub,
-        if (!Platform.isMacOS) Buttons.Twitter: _signInWithTwitter,
+        Buttons.Apple: () => _handleMultiFactorException(
+              _signInWithApple,
+            ),
+        Buttons.Google: () => _handleMultiFactorException(
+              _signInWithGoogle,
+            ),
+        Buttons.GitHub: () => _handleMultiFactorException(
+              _signInWithGitHub,
+            ),
+        Buttons.Microsoft: () => _handleMultiFactorException(
+              _signInWithMicrosoft,
+            ),
+        Buttons.Twitter: () => _handleMultiFactorException(
+              _signInWithTwitter,
+            ),
+        Buttons.Yahoo: () => _handleMultiFactorException(
+              _signInWithYahoo,
+            ),
       };
     }
   }
@@ -189,7 +205,11 @@ class _AuthGateState extends State<AuthGate> {
                             width: double.infinity,
                             height: 50,
                             child: ElevatedButton(
-                              onPressed: isLoading ? null : _emailAndPassword,
+                              onPressed: isLoading
+                                  ? null
+                                  : () => _handleMultiFactorException(
+                                        _emailAndPassword,
+                                      ),
                               child: isLoading
                                   ? const CircularProgressIndicator.adaptive()
                                   : Text(mode.label),
@@ -365,78 +385,79 @@ class _AuthGateState extends State<AuthGate> {
     }
   }
 
-  Future<void> _emailAndPassword() async {
-    if (formKey.currentState?.validate() ?? false) {
-      setIsLoading();
-
-      try {
-        if (mode == AuthMode.login) {
-          await _auth.signInWithEmailAndPassword(
-            email: emailController.text,
-            password: passwordController.text,
-          );
-        } else if (mode == AuthMode.register) {
-          await _auth.createUserWithEmailAndPassword(
-            email: emailController.text,
-            password: passwordController.text,
-          );
-        } else {
-          await _phoneAuth();
-        }
-      } on FirebaseAuthException catch (e) {
-        setState(() {
-          error = '${e.message}';
-        });
-      } catch (e) {
-        setState(() {
-          error = '$e';
-        });
-      } finally {
-        setIsLoading();
+  Future<void> _handleMultiFactorException(
+    Future<void> Function() authFunction,
+  ) async {
+    setIsLoading();
+    try {
+      await authFunction();
+    } on FirebaseAuthMultiFactorException catch (e) {
+      setState(() {
+        error = '${e.message}';
+      });
+      final firstHint = e.resolver.hints.first;
+      if (firstHint is! PhoneMultiFactorInfo) {
+        return;
       }
+      final auth = FirebaseAuth.instance;
+      await auth.verifyPhoneNumber(
+        multiFactorSession: e.resolver.session,
+        multiFactorInfo: firstHint,
+        verificationCompleted: (_) {},
+        verificationFailed: print,
+        codeSent: (String verificationId, int? resendToken) async {
+          final smsCode = await getSmsCodeFromUser(context);
+
+          if (smsCode != null) {
+            // Create a PhoneAuthCredential with the code
+            final credential = PhoneAuthProvider.credential(
+              verificationId: verificationId,
+              smsCode: smsCode,
+            );
+
+            try {
+              await e.resolver.resolveSignIn(
+                PhoneMultiFactorGenerator.getAssertion(
+                  credential,
+                ),
+              );
+            } on FirebaseAuthException catch (e) {
+              print(e.message);
+            }
+          }
+        },
+        codeAutoRetrievalTimeout: print,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        error = '${e.message}';
+      });
+    } catch (e) {
+      setState(() {
+        error = '$e';
+      });
+    } finally {
+      setIsLoading();
     }
   }
 
-  Future<String?> getSmsCodeFromUser() async {
-    String? smsCode;
-
-    // Update the UI - wait for the user to enter the SMS code
-    await showDialog<String>(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('SMS code:'),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Sign in'),
-            ),
-            OutlinedButton(
-              onPressed: () {
-                smsCode = null;
-                Navigator.of(context).pop();
-              },
-              child: const Text('Cancel'),
-            ),
-          ],
-          content: Container(
-            padding: const EdgeInsets.all(20),
-            child: TextField(
-              onChanged: (value) {
-                smsCode = value;
-              },
-              textAlign: TextAlign.center,
-              autofocus: true,
-            ),
-          ),
+  Future<void> _emailAndPassword() async {
+    if (formKey.currentState?.validate() ?? false) {
+      setIsLoading();
+      if (mode == AuthMode.login) {
+        await _auth.signInWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
         );
-      },
-    );
-
-    return smsCode;
+      } else if (mode == AuthMode.register) {
+        await _auth.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+      } else {
+        await _phoneAuth();
+      }
+    }
   }
 
   Future<void> _phoneAuth() async {
@@ -445,166 +466,164 @@ class _AuthGateState extends State<AuthGate> {
         mode = AuthMode.phone;
       });
     } else {
-      try {
-        if (kIsWeb) {
-          final confirmationResult =
-              await _auth.signInWithPhoneNumber(phoneController.text);
-          final smsCode = await getSmsCodeFromUser();
+      if (kIsWeb) {
+        final confirmationResult =
+            await _auth.signInWithPhoneNumber(phoneController.text);
+        final smsCode = await getSmsCodeFromUser(context);
 
-          if (smsCode != null) {
-            await confirmationResult.confirm(smsCode);
-          }
-        } else {
-          await _auth.verifyPhoneNumber(
-            phoneNumber: phoneController.text,
-            verificationCompleted: (_) {},
-            verificationFailed: (e) {
-              setState(() {
-                error = '${e.message}';
-              });
-            },
-            codeSent: (String verificationId, int? resendToken) async {
-              final smsCode = await getSmsCodeFromUser();
-
-              if (smsCode != null) {
-                // Create a PhoneAuthCredential with the code
-                final credential = PhoneAuthProvider.credential(
-                  verificationId: verificationId,
-                  smsCode: smsCode,
-                );
-
-                try {
-                  // Sign the user in (or link) with the credential
-                  await _auth.signInWithCredential(credential);
-                } on FirebaseAuthException catch (e) {
-                  setState(() {
-                    error = e.message ?? '';
-                  });
-                }
-              }
-            },
-            codeAutoRetrievalTimeout: (e) {
-              setState(() {
-                error = e;
-              });
-            },
-          );
+        if (smsCode != null) {
+          await confirmationResult.confirm(smsCode);
         }
-      } catch (e) {
-        setState(() {
-          error = '$e';
-        });
-      } finally {
-        setIsLoading();
+      } else {
+        await _auth.verifyPhoneNumber(
+          phoneNumber: phoneController.text,
+          verificationCompleted: (_) {},
+          verificationFailed: (e) {
+            setState(() {
+              error = '${e.message}';
+            });
+          },
+          codeSent: (String verificationId, int? resendToken) async {
+            final smsCode = await getSmsCodeFromUser(context);
+
+            if (smsCode != null) {
+              // Create a PhoneAuthCredential with the code
+              final credential = PhoneAuthProvider.credential(
+                verificationId: verificationId,
+                smsCode: smsCode,
+              );
+
+              try {
+                // Sign the user in (or link) with the credential
+                await _auth.signInWithCredential(credential);
+              } on FirebaseAuthException catch (e) {
+                setState(() {
+                  error = e.message ?? '';
+                });
+              }
+            }
+          },
+          codeAutoRetrievalTimeout: (e) {
+            setState(() {
+              error = e;
+            });
+          },
+        );
       }
     }
   }
 
   Future<void> _signInWithGoogle() async {
-    setIsLoading();
-    try {
-      // Trigger the authentication flow
-      final googleUser = await GoogleSignIn().signIn();
+    // Trigger the authentication flow
+    final googleUser = await GoogleSignIn().signIn();
 
-      // Obtain the auth details from the request
-      final googleAuth = await googleUser?.authentication;
+    // Obtain the auth details from the request
+    final googleAuth = await googleUser?.authentication;
 
-      if (googleAuth != null) {
-        // Create a new credential
-        final credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
-        );
+    if (googleAuth != null) {
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-        // Once signed in, return the UserCredential
-        await _auth.signInWithCredential(credential);
-      }
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        error = '${e.message}';
-      });
-    } finally {
-      setIsLoading();
+      // Once signed in, return the UserCredential
+      await _auth.signInWithCredential(credential);
     }
   }
 
   Future<void> _signInWithTwitter() async {
-    setIsLoading();
-    try {
-      if (kIsWeb) {
-        // Create a new provider
-        TwitterAuthProvider twitterProvider = TwitterAuthProvider();
+    TwitterAuthProvider twitterProvider = TwitterAuthProvider();
 
-        // Once signed in, return the UserCredential
-        await FirebaseAuth.instance.signInWithPopup(twitterProvider);
-      } else {
-        // Create a TwitterLogin instance
-        final twitterLogin = TwitterLogin(
-          apiKey: TwitterConfig['API_KEY']!,
-          apiSecretKey: TwitterConfig['API_SECRET_KEY']!,
-          redirectURI: TwitterConfig['REDIRECT_URL']!,
-        );
+    if (kIsWeb) {
+      await _auth.signInWithPopup(twitterProvider);
+    } else {
+      await _auth.signInWithProvider(twitterProvider);
+    }
+  }
 
-        // Trigger the sign-in flow
-        final authResult = await twitterLogin.login();
+  Future<void> _signInWithApple() async {
+    final appleProvider = AppleAuthProvider();
+    appleProvider.addScope('email');
 
-        if (authResult.status == TwitterLoginStatus.loggedIn) {
-          // Create a credential from the access token
-          final twitterAuthCredential = TwitterAuthProvider.credential(
-            accessToken: authResult.authToken!,
-            secret: authResult.authTokenSecret!,
-          );
+    if (kIsWeb) {
+      // Once signed in, return the UserCredential
+      await _auth.signInWithPopup(appleProvider);
+    } else {
+      await _auth.signInWithProvider(appleProvider);
+    }
+  }
 
-          // Once signed in, return the UserCredential
-          await _auth.signInWithCredential(twitterAuthCredential);
-        }
-      }
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        error = '${e.message}';
-      });
-    } finally {
-      setIsLoading();
+  Future<void> _signInWithYahoo() async {
+    final yahooProvider = YahooAuthProvider();
+
+    if (kIsWeb) {
+      // Once signed in, return the UserCredential
+      await _auth.signInWithPopup(yahooProvider);
+    } else {
+      await _auth.signInWithProvider(yahooProvider);
     }
   }
 
   Future<void> _signInWithGitHub() async {
-    setIsLoading();
+    final githubProvider = GithubAuthProvider();
 
-    try {
-      if (kIsWeb) {
-        // Create a new provider
-        GithubAuthProvider githubProvider = GithubAuthProvider();
-
-        // Once signed in, return the UserCredential
-        await _auth.signInWithPopup(githubProvider);
-      } else {
-        // Create a GitHubSignIn instance
-        final GitHubSignIn gitHubSignIn = GitHubSignIn(
-          clientId: GitHubConfig['CLIENT_ID']!,
-          clientSecret: GitHubConfig['CLIENT_SECRET']!,
-          redirectUrl: GitHubConfig['REDIRECT_URL']!,
-        );
-
-        // Trigger the sign-in flow
-        final result = await gitHubSignIn.signIn(context);
-
-        final token = result.token;
-
-        if (token != null) {
-          // Create a credential from the access token
-          final githubAuthCredential = GithubAuthProvider.credential(token);
-
-          // Once signed in, return the UserCredential
-          await _auth.signInWithCredential(githubAuthCredential);
-        }
-      }
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        error = '${e.message}';
-      });
-    } finally {
-      setIsLoading();
+    if (kIsWeb) {
+      await _auth.signInWithPopup(githubProvider);
+    } else {
+      await _auth.signInWithProvider(githubProvider);
     }
   }
+
+  Future<void> _signInWithMicrosoft() async {
+    final microsoftProvider = MicrosoftAuthProvider();
+
+    if (kIsWeb) {
+      await _auth.signInWithPopup(microsoftProvider);
+    } else {
+      await _auth.signInWithProvider(microsoftProvider);
+    }
+  }
+}
+
+Future<String?> getSmsCodeFromUser(BuildContext context) async {
+  String? smsCode;
+
+  // Update the UI - wait for the user to enter the SMS code
+  await showDialog<String>(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('SMS code:'),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Sign in'),
+          ),
+          OutlinedButton(
+            onPressed: () {
+              smsCode = null;
+              Navigator.of(context).pop();
+            },
+            child: const Text('Cancel'),
+          ),
+        ],
+        content: Container(
+          padding: const EdgeInsets.all(20),
+          child: TextField(
+            onChanged: (value) {
+              smsCode = value;
+            },
+            textAlign: TextAlign.center,
+            autofocus: true,
+          ),
+        ),
+      );
+    },
+  );
+
+  return smsCode;
 }

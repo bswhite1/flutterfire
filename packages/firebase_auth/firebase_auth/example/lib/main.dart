@@ -1,17 +1,23 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+// Copyright 2022, the Chromium project authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import 'auth.dart';
 import 'profile.dart';
+
+/// Requires that a Firebase local emulator is running locally.
+/// See https://firebase.flutter.dev/docs/auth/start/#optional-prototype-and-test-with-firebase-local-emulator-suite
+bool shouldUseFirebaseEmulator = false;
 
 // Requires that the Firebase Auth emulator is running locally
 // e.g via `melos run firebase:emulator`.
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   // We're using the manual installation on non-web platforms since Google sign in plugin doesn't yet support Dart initialization.
   // See related issue: https://github.com/flutter/flutter/issues/96391
   if (!kIsWeb) {
@@ -31,7 +37,9 @@ Future<void> main() async {
     );
   }
 
-  await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  if (shouldUseFirebaseEmulator) {
+    await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+  }
 
   runApp(const AuthExampleApp());
 }
@@ -49,11 +57,11 @@ class AuthExampleApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.amber),
       home: Scaffold(
         body: LayoutBuilder(
-          builder: (context, constraines) {
+          builder: (context, constraints) {
             return Row(
               children: [
                 Visibility(
-                  visible: constraines.maxWidth >= 1200,
+                  visible: constraints.maxWidth >= 1200,
                   child: Expanded(
                     child: Container(
                       height: double.infinity,
@@ -73,9 +81,9 @@ class AuthExampleApp extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: constraines.maxWidth >= 1200
-                      ? constraines.maxWidth / 2
-                      : constraines.maxWidth,
+                  width: constraints.maxWidth >= 1200
+                      ? constraints.maxWidth / 2
+                      : constraints.maxWidth,
                   child: StreamBuilder<User?>(
                     stream: FirebaseAuth.instance.authStateChanges(),
                     builder: (context, snapshot) {
