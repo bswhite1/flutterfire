@@ -324,7 +324,7 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
 
     return completer.future.whenComplete(() {
       print('runTransaction returning.');
-      snapshotStream.cancel();
+      snapshotStreamSubscription.cancel();
     });
 
     // return completer.future.whenComplete(snapshotStreamSubscription.cancel);
