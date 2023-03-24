@@ -20,6 +20,7 @@ dependencies:
     path: ../cloud_firestore_platform_interface
   cloud_firestore_web:
     path: ../cloud_firestore_web
+  collection: ^1.0.0
   firebase_core:
     path: ../../firebase_core/firebase_core
   firebase_core_platform_interface:

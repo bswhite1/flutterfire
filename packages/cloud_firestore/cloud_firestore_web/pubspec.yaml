@@ -11,8 +11,11 @@ environment:
 
 dependencies:
 
+  _flutterfire_internals:
+    path: ../../_flutterfire_internals
   cloud_firestore_platform_interface:
     path: ../cloud_firestore_platform_interface
+  collection: ^1.0.0
   firebase_core:
     path: ../../firebase_core/firebase_core
   firebase_core_web:
