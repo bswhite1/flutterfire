@@ -1,3 +1,33 @@
+## 2.8.0
+
+ - **FEAT**: bump Firebase iOS SDK 10.6.0 ([#10613](https://github.com/firebase/flutterfire/issues/10613)). ([7a3d0b5d](https://github.com/firebase/flutterfire/commit/7a3d0b5d2074b67470d255da2dd9c37b246a201d))
+ - **FEAT**: bump Firebase iOS SDK `10.5.0` ([#10532](https://github.com/firebase/flutterfire/issues/10532)). ([c77fc4d4](https://github.com/firebase/flutterfire/commit/c77fc4d497532ffff352a3486abf01a98bc44869))
+
+## 2.7.1
+
+ - Update a dependency to the latest release.
+
+## 2.7.0
+
+ - **FEAT**: bump Firebase Android SDK to 31.2.2 ([#10492](https://github.com/firebase/flutterfire/issues/10492)). ([8990537a](https://github.com/firebase/flutterfire/commit/8990537a2547480462c0ebb4b79e60fca6a00bbb))
+
+## 2.6.1
+
+ - Update a dependency to the latest release.
+
+## 2.6.0
+
+ - **FEAT**: add support for TrustedType ([#10312](https://github.com/firebase/flutterfire/issues/10312)). ([da74aabb](https://github.com/firebase/flutterfire/commit/da74aabb0aa7350319179c1cb586b7bd3591d415))
+
+## 2.5.0
+
+ - **REFACTOR**: upgrade project to remove warnings from Flutter 3.7 ([#10344](https://github.com/firebase/flutterfire/issues/10344)). ([e0087c84](https://github.com/firebase/flutterfire/commit/e0087c845c7526c11a4241a26d39d4673b0ad29d))
+ - **FEAT**: bump Firebase Android SDK to `31.2.0` ([#10369](https://github.com/firebase/flutterfire/issues/10369)). ([3a8b3b01](https://github.com/firebase/flutterfire/commit/3a8b3b01f6a311308509bfb8407ba13a05dd6a2d))
+
+## 2.4.1
+
+ - Update a dependency to the latest release.
+
 ## 2.4.0
 
  - **FEAT**: bump Firebase iOS SDK to 10.3.0 ([#10063](https://github.com/firebase/flutterfire/issues/10063)). ([a0910a1e](https://github.com/firebase/flutterfire/commit/a0910a1e49d7ff258f647a4a13b89b219e6eb157))

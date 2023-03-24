@@ -1,3 +1,31 @@
+## 14.3.0
+
+ - **FEAT**: bump Firebase iOS SDK `10.5.0` ([#10532](https://github.com/firebase/flutterfire/issues/10532)). ([c77fc4d4](https://github.com/firebase/flutterfire/commit/c77fc4d497532ffff352a3486abf01a98bc44869))
+
+## 14.2.6
+
+ - Update a dependency to the latest release.
+
+## 14.2.5
+
+ - **FIX**: badge is in the `message`, not the `notification` ([#10470](https://github.com/firebase/flutterfire/issues/10470)). ([cf282675](https://github.com/firebase/flutterfire/commit/cf282675a498629887680b37a81014bb939552b4))
+
+## 14.2.4
+
+ - Update a dependency to the latest release.
+
+## 14.2.3
+
+ - Update a dependency to the latest release.
+
+## 14.2.2
+
+ - **REFACTOR**: upgrade project to remove warnings from Flutter 3.7 ([#10344](https://github.com/firebase/flutterfire/issues/10344)). ([e0087c84](https://github.com/firebase/flutterfire/commit/e0087c845c7526c11a4241a26d39d4673b0ad29d))
+
+## 14.2.1
+
+ - Update a dependency to the latest release.
+
 ## 14.2.0
 
  - **FEAT**: add ServerTimestampBehavior to the GetOptions class.  ([#9590](https://github.com/firebase/flutterfire/issues/9590)). ([c25bd2fe](https://github.com/firebase/flutterfire/commit/c25bd2fe4c13bc9f13d93410842c00e25aaac2b2))

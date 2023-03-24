@@ -1,3 +1,43 @@
+## 1.2.10
+
+ - Update a dependency to the latest release.
+
+## 1.2.9
+
+ - Update a dependency to the latest release.
+
+## 1.2.8
+
+ - Update a dependency to the latest release.
+
+## 1.2.7
+
+ - Update a dependency to the latest release.
+
+## 1.2.6
+
+ - Update a dependency to the latest release.
+
+## 1.2.5
+
+ - Update a dependency to the latest release.
+
+## 1.2.4
+
+ - **REFACTOR**: upgrade project to remove warnings from Flutter 3.7 ([#10344](https://github.com/firebase/flutterfire/issues/10344)). ([e0087c84](https://github.com/firebase/flutterfire/commit/e0087c845c7526c11a4241a26d39d4673b0ad29d))
+
+## 1.2.3
+
+ - Update a dependency to the latest release.
+
+## 1.2.2
+
+ - Update a dependency to the latest release.
+
+## 1.2.1
+
+ - Update a dependency to the latest release.
+
 ## 1.2.0
 
  - **FEAT**: use aggregate query to display total rows count in DataTable ([#10113](https://github.com/firebase/flutterfire/issues/10113)). ([bf52bcca](https://github.com/firebase/flutterfire/commit/bf52bcca3eb186cc001344d2522e11245e5e660a))

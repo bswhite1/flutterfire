@@ -1,34 +1,18 @@
 name: firebase_in_app_messaging_example
 description: Demonstrates how to use the firebase_in_app_messaging plugin.
-publish_to: "none"
+publish_to: 'none'
 
 environment:
-  sdk: ">=2.16.0 <3.0.0"
+  sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
   cupertino_icons: ^1.0.2
-  firebase_analytics:
-    path: ../../../firebase_analytics/firebase_analytics
-  firebase_core:
-    path: ../../../firebase_core/firebase_core
-  firebase_in_app_messaging:
-    path: ../
-  firebase_in_app_messaging_platform_interface:
-    path: ../../firebase_in_app_messaging_platform_interface
+  firebase_analytics: ^10.1.6
+  firebase_core: ^2.8.0
+  firebase_in_app_messaging: ^0.7.0+16
+  firebase_in_app_messaging_platform_interface: ^0.2.1+35
   flutter:
     sdk: flutter
-
-dependency_overrides:
-  _flutterfire_internals:
-    path: ../../../_flutterfire_internals
-  firebase_core:
-    path: ../../../firebase_core/firebase_core
-  firebase_core_platform_interface:
-    path: ../../../firebase_core/firebase_core_platform_interface
-  firebase_core_web:
-    path: ../../../firebase_core/firebase_core_web
-  firebase_in_app_messaging_platform_interface:
-    path: ../../firebase_in_app_messaging_platform_interface
 
 flutter:
   uses-material-design: true

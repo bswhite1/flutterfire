@@ -2,9 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:firebase_ui_shared/firebase_ui_shared.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'platform_widget.dart';
 
 class Subtitle extends PlatformWidget {
   final String text;
@@ -30,7 +30,7 @@ class Subtitle extends PlatformWidget {
       text,
       style: Theme.of(context)
           .textTheme
-          .subtitle1!
+          .titleMedium!
           .copyWith(fontWeight: fontWeight),
     );
   }

@@ -3,12 +3,11 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
+import 'package:firebase_ui_shared/firebase_ui_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 
-import '../widgets/internal/universal_button.dart';
-import '../widgets/internal/universal_scaffold.dart';
 import '../screens/internal/responsive_page.dart';
 
 /// A screen displaying a UI which allows users to enter an SMS validation code
@@ -80,7 +79,7 @@ class SMSCodeInputScreen extends StatelessWidget {
     this.sideBuilder,
     this.headerBuilder,
     this.headerMaxExtent,
-    this.breakpoint = 500,
+    this.breakpoint = 670,
     this.contentFlex,
     this.maxWidth,
   }) : super(key: key);
@@ -110,6 +109,7 @@ class SMSCodeInputScreen extends StatelessWidget {
               sideBuilder: sideBuilder,
               headerBuilder: headerBuilder,
               headerMaxExtent: headerMaxExtent,
+              contentFlex: contentFlex,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

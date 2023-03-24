@@ -1,3 +1,35 @@
+## 5.2.10
+
+ - **FIX**(auth): fix an issue where unenroll would not throw a FirebaseException ([#10572](https://github.com/firebase/flutterfire/issues/10572)). ([8dba33e1](https://github.com/firebase/flutterfire/commit/8dba33e1a95f03d70d527885aa58ce23622e359f))
+
+## 5.2.9
+
+ - **FIX**(auth,web): fix currentUser being null when using emulator or named instance ([#10565](https://github.com/firebase/flutterfire/issues/10565)). ([11e8644d](https://github.com/firebase/flutterfire/commit/11e8644df402a5abbb0d0c37714879272dec024c))
+
+## 5.2.8
+
+ - Update a dependency to the latest release.
+
+## 5.2.7
+
+ - Update a dependency to the latest release.
+
+## 5.2.6
+
+ - Update a dependency to the latest release.
+
+## 5.2.5
+
+ - Update a dependency to the latest release.
+
+## 5.2.4
+
+ - Update a dependency to the latest release.
+
+## 5.2.3
+
+ - revert dependency `Intl` to 0.17.0
+
 ## 5.2.2
 
  - Update a dependency to the latest release.

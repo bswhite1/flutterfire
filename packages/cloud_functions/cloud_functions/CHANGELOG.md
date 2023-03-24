@@ -1,3 +1,31 @@
+## 4.0.13
+
+ - Update a dependency to the latest release.
+
+## 4.0.12
+
+ - Update a dependency to the latest release.
+
+## 4.0.11
+
+ - Update a dependency to the latest release.
+
+## 4.0.10
+
+ - Update a dependency to the latest release.
+
+## 4.0.9
+
+ - Update a dependency to the latest release.
+
+## 4.0.8
+
+ - **REFACTOR**: upgrade project to remove warnings from Flutter 3.7 ([#10344](https://github.com/firebase/flutterfire/issues/10344)). ([e0087c84](https://github.com/firebase/flutterfire/commit/e0087c845c7526c11a4241a26d39d4673b0ad29d))
+
+## 4.0.7
+
+ - Update a dependency to the latest release.
+
 ## 4.0.6
 
  - **REFACTOR**: remove deprecated Task APIs ([#10076](https://github.com/firebase/flutterfire/issues/10076)). ([951bc77b](https://github.com/firebase/flutterfire/commit/951bc77be8e2177435c0c94cc3667b24064dbdc5))

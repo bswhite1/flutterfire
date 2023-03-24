@@ -1,3 +1,35 @@
+## 3.3.17
+
+ - Update a dependency to the latest release.
+
+## 3.3.16
+
+ - Update a dependency to the latest release.
+
+## 3.3.15
+
+ - Update a dependency to the latest release.
+
+## 3.3.14
+
+ - Update a dependency to the latest release.
+
+## 3.3.13
+
+ - Update a dependency to the latest release.
+
+## 3.3.12
+
+ - Update a dependency to the latest release.
+
+## 3.3.11
+
+ - **FIX**: improve reason field handling in recordError ([#10264](https://github.com/firebase/flutterfire/issues/10264)). ([8f670e4f](https://github.com/firebase/flutterfire/commit/8f670e4fe67869aaff83362a7df1afdf9bb41315))
+
+## 3.3.10
+
+ - Update a dependency to the latest release.
+
 ## 3.3.9
 
  - Update a dependency to the latest release.

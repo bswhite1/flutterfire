@@ -66,7 +66,7 @@ class MethodChannelQuery extends QueryPlatform {
   }
 
   @override
-  QueryPlatform endAt(List<dynamic> fields) {
+  QueryPlatform endAt(Iterable<dynamic> fields) {
     return _copyWithParameters(<String, dynamic>{
       'endAt': fields,
       'endBefore': null,
@@ -74,7 +74,8 @@ class MethodChannelQuery extends QueryPlatform {
   }
 
   @override
-  QueryPlatform endBeforeDocument(List<dynamic> orders, List<dynamic> values) {
+  QueryPlatform endBeforeDocument(
+      Iterable<dynamic> orders, Iterable<dynamic> values) {
     return _copyWithParameters(<String, dynamic>{
       'orderBy': orders,
       'endAt': null,
@@ -83,7 +84,7 @@ class MethodChannelQuery extends QueryPlatform {
   }
 
   @override
-  QueryPlatform endBefore(List<dynamic> fields) {
+  QueryPlatform endBefore(Iterable<dynamic> fields) {
     return _copyWithParameters(<String, dynamic>{
       'endAt': null,
       'endBefore': fields,
@@ -178,7 +179,7 @@ class MethodChannelQuery extends QueryPlatform {
   }
 
   @override
-  QueryPlatform orderBy(List<List<dynamic>> orders) {
+  QueryPlatform orderBy(Iterable<List<dynamic>> orders) {
     return _copyWithParameters(<String, dynamic>{'orderBy': orders});
   }
 
@@ -192,7 +193,7 @@ class MethodChannelQuery extends QueryPlatform {
   }
 
   @override
-  QueryPlatform startAfter(List<dynamic> fields) {
+  QueryPlatform startAfter(Iterable<dynamic> fields) {
     return _copyWithParameters(<String, dynamic>{
       'startAt': null,
       'startAfter': fields,
@@ -200,7 +201,8 @@ class MethodChannelQuery extends QueryPlatform {
   }
 
   @override
-  QueryPlatform startAtDocument(List<dynamic> orders, List<dynamic> values) {
+  QueryPlatform startAtDocument(
+      Iterable<dynamic> orders, Iterable<dynamic> values) {
     return _copyWithParameters(<String, dynamic>{
       'orderBy': orders,
       'startAt': values,
@@ -209,7 +211,7 @@ class MethodChannelQuery extends QueryPlatform {
   }
 
   @override
-  QueryPlatform startAt(List<dynamic> fields) {
+  QueryPlatform startAt(Iterable<dynamic> fields) {
     return _copyWithParameters(<String, dynamic>{
       'startAt': fields,
       'startAfter': null,
@@ -217,7 +219,7 @@ class MethodChannelQuery extends QueryPlatform {
   }
 
   @override
-  QueryPlatform where(List<List<dynamic>> conditions) {
+  QueryPlatform where(Iterable<List<dynamic>> conditions) {
     return _copyWithParameters(<String, dynamic>{
       'where': conditions,
     });

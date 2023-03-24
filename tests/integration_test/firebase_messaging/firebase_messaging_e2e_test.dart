@@ -68,6 +68,7 @@ void main() {
         test(
           'sets the value',
           () async {
+            await messaging.setAutoInitEnabled(true);
             expect(messaging.isAutoInitEnabled, isTrue);
             await messaging.setAutoInitEnabled(false);
             expect(messaging.isAutoInitEnabled, isFalse);
@@ -122,12 +123,11 @@ void main() {
         );
 
         test(
-          'resolves null on ios if using simulator',
-          () async {
-            expect(await messaging.getAPNSToken(), null);
+          'resolves dummy APNS token on ios if using simulator',
+              () async {
+            expect(await messaging.getAPNSToken(), isA<String>());
           },
-          skip: !(defaultTargetPlatform == TargetPlatform.iOS ||
-              defaultTargetPlatform != TargetPlatform.macOS),
+          skip: defaultTargetPlatform != TargetPlatform.iOS,
         );
       });
 
@@ -141,21 +141,8 @@ void main() {
         'getToken()',
         () {
           test('returns a token', () async {
-            final result = await messaging.requestPermission();
-
-            if (result.authorizationStatus == AuthorizationStatus.authorized) {
               final result = await messaging.getToken();
-
               expect(result, isA<String>());
-            } else {
-              await expectLater(
-                messaging.getToken(),
-                throwsA(
-                  isA<FirebaseException>()
-                      .having((e) => e.code, 'code', 'permission-blocked'),
-                ),
-              );
-            }
           });
         },
         skip: skipManualTests,
@@ -165,9 +152,6 @@ void main() {
         test(
           'generate a new token after deleting',
           () async {
-            final result = await messaging.requestPermission();
-
-            if (result.authorizationStatus == AuthorizationStatus.authorized) {
               final token1 = await messaging.getToken();
               await Future.delayed(const Duration(seconds: 3));
               await messaging.deleteToken();
@@ -176,15 +160,6 @@ void main() {
               expect(token1, isA<String>());
               expect(token2, isA<String>());
               expect(token1, isNot(token2));
-            } else {
-              await expectLater(
-                messaging.getToken(),
-                throwsA(
-                  isA<FirebaseException>()
-                      .having((e) => e.code, 'code', 'permission-blocked'),
-                ),
-              );
-            }
           },
           skip: skipManualTests,
         ); // only run for manual testing
@@ -198,10 +173,7 @@ void main() {
             await messaging.subscribeToTopic(topic);
           },
           // macOS skipped because it needs keychain sharing entitlement. See: https://github.com/firebase/flutterfire/issues/9538
-          // Android skipped because it times out with a likelihood of 98%. See: https://github.com/firebase/flutterfire/issues/9651
-          skip: kIsWeb ||
-              defaultTargetPlatform == TargetPlatform.macOS ||
-              defaultTargetPlatform == TargetPlatform.android,
+          skip: kIsWeb || defaultTargetPlatform == TargetPlatform.macOS,
         );
       });
 
@@ -213,10 +185,7 @@ void main() {
             await messaging.unsubscribeFromTopic(topic);
           },
           // macOS skipped because it needs keychain sharing entitlement. See: https://github.com/firebase/flutterfire/issues/9538
-          // Android skipped because it times out with a likelihood of 98%. See: https://github.com/firebase/flutterfire/issues/9650
-          skip: kIsWeb ||
-              defaultTargetPlatform == TargetPlatform.macOS ||
-              defaultTargetPlatform == TargetPlatform.android,
+          skip: kIsWeb || defaultTargetPlatform == TargetPlatform.macOS,
         );
       });
 

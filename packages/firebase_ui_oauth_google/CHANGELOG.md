@@ -1,3 +1,55 @@
+## 1.0.24
+
+ - Update a dependency to the latest release.
+
+## 1.0.23
+
+ - Update a dependency to the latest release.
+
+## 1.0.22
+
+ - **FIX**(ui_auth_google): bump google_sign_in version ([#10531](https://github.com/firebase/flutterfire/issues/10531)). ([782850d7](https://github.com/firebase/flutterfire/commit/782850d7912c79fbd3da5d96fda2cf3d844a11dc))
+
+## 1.0.21
+
+ - Update a dependency to the latest release.
+
+## 1.0.20
+
+ - Update a dependency to the latest release.
+
+## 1.0.19
+
+ - Update a dependency to the latest release.
+
+## 1.0.18
+
+ - **FIX**: allow GoogleService-Info.plist based configuration ([#10360](https://github.com/firebase/flutterfire/issues/10360)). ([162597f4](https://github.com/firebase/flutterfire/commit/162597f4556b1e0da0601db08574f41ac3585500))
+
+## 1.0.17
+
+ - Update a dependency to the latest release.
+
+## 1.0.16
+
+ - Update a dependency to the latest release.
+
+## 1.0.15
+
+ - Update a dependency to the latest release.
+
+## 1.0.14
+
+ - Update a dependency to the latest release.
+
+## 1.0.13
+
+ - Update a dependency to the latest release.
+
+## 1.0.12
+
+ - Update a dependency to the latest release.
+
 ## 1.0.11
 
  - Update a dependency to the latest release.

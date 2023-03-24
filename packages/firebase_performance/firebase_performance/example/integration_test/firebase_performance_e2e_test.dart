@@ -3,9 +3,9 @@
 // found in the LICENSE file.
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:firebase_performance/firebase_performance.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
 import 'firebase_options.dart';
@@ -46,15 +46,32 @@ void main() {
 
     setUpAll(() async {
       performance = FirebasePerformance.instance;
-      await performance.setPerformanceCollectionEnabled(true);
     });
 
     setUp(() async {
+      await performance.setPerformanceCollectionEnabled(true);
       testTrace = performance.newTrace('test-trace');
     });
 
     test('start & stop trace', () async {
       await testTrace.start();
+      await testTrace.stop();
+    });
+
+    test('starting trace with performance collection disabled', () async {
+      await performance.setPerformanceCollectionEnabled(false);
+      await testTrace.start();
+      await testTrace.stop();
+    });
+
+    test("starting Trace twice shouldn't throw an error", () async {
+      await testTrace.start();
+      await testTrace.start();
+    });
+
+    test("stopping Trace twice shouldn't throw an error", () async {
+      await testTrace.start();
+      await testTrace.stop();
       await testTrace.stop();
     });
 
@@ -150,6 +167,20 @@ void main() {
         });
       });
 
+      test('test all Http method values with collection disabled', () async {
+        FirebasePerformance performance = FirebasePerformance.instance;
+        await performance.setPerformanceCollectionEnabled(false);
+
+        await Future.forEach(HttpMethod.values, (HttpMethod method) async {
+          final HttpMetric testMetric = performance.newHttpMetric(
+            'https://www.google.com/',
+            method,
+          );
+          await testMetric.start();
+          await testMetric.stop();
+        });
+      });
+
       test('putAttribute works correctly', () {
         testHttpMetric.putAttribute('apple', 'sauce');
         testHttpMetric.putAttribute('banana', 'pie');
@@ -201,6 +232,17 @@ void main() {
       test('set response content type correctly', () {
         testHttpMetric.responseContentType = 'content';
         expect(testHttpMetric.responseContentType, equals('content'));
+      });
+
+      test("starting HttpMetric twice shouldn't throw an error", () async {
+        await testHttpMetric.start();
+        await testHttpMetric.start();
+      });
+
+      test("stopping HttpMetric twice shouldn't throw an error", () async {
+        await testHttpMetric.start();
+        await testHttpMetric.stop();
+        await testHttpMetric.stop();
       });
     },
     skip: kIsWeb,

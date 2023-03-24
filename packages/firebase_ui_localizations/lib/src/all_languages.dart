@@ -7,6 +7,7 @@ import "./default_localizations.dart";
 import 'lang/es.dart';
 import 'lang/es_419.dart';
 import 'lang/ko.dart';
+import 'lang/hu.dart';
 import 'lang/id.dart';
 import 'lang/pt.dart';
 import 'lang/de.dart';
@@ -24,11 +25,13 @@ import 'lang/ja.dart';
 import 'lang/hi.dart';
 import 'lang/ru.dart';
 import 'lang/fr.dart';
+import 'lang/he.dart';
 
 final localizations = <String, FirebaseUILocalizationLabels>{
   'es': const EsLocalizations(),
   'es_419': const Es419Localizations(),
   'ko': const KoLocalizations(),
+  'hu': const HuLocalizations(),
   'id': const IdLocalizations(),
   'pt': const PtLocalizations(),
   'de': const DeLocalizations(),
@@ -46,4 +49,5 @@ final localizations = <String, FirebaseUILocalizationLabels>{
   'hi': const HiLocalizations(),
   'ru': const RuLocalizations(),
   'fr': const FrLocalizations(),
+  'he': const HeLocalizations(),
 };

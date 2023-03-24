@@ -1,3 +1,39 @@
+## 3.0.17
+
+ - **FIX**(crashlytics,ios): fix Crashlytics obfuscation for iOS on the Flutter side ([#10566](https://github.com/firebase/flutterfire/issues/10566)). ([a4fa7eff](https://github.com/firebase/flutterfire/commit/a4fa7effbb1374d6241989fbbbb96d02b712a1c0))
+
+## 3.0.16
+
+ - Update a dependency to the latest release.
+
+## 3.0.15
+
+ - Update a dependency to the latest release.
+
+## 3.0.14
+
+ - Update a dependency to the latest release.
+
+## 3.0.13
+
+ - Update a dependency to the latest release.
+
+## 3.0.12
+
+ - **REFACTOR**: upgrade project to remove warnings from Flutter 3.7 ([#10344](https://github.com/firebase/flutterfire/issues/10344)). ([e0087c84](https://github.com/firebase/flutterfire/commit/e0087c845c7526c11a4241a26d39d4673b0ad29d))
+
+## 3.0.11
+
+ - **FIX**: improve reason field handling in recordError ([#10264](https://github.com/firebase/flutterfire/issues/10264)). ([8f670e4f](https://github.com/firebase/flutterfire/commit/8f670e4fe67869aaff83362a7df1afdf9bb41315))
+
+## 3.0.10
+
+ - **FIX**: improve reason field handling in recordError ([#10256](https://github.com/firebase/flutterfire/issues/10256)). ([48af8110](https://github.com/firebase/flutterfire/commit/48af8110b34d6c2e635ef5d1023086ab5eadcbf4))
+
+## 3.0.9
+
+ - Update a dependency to the latest release.
+
 ## 3.0.8
 
  - Update a dependency to the latest release.
