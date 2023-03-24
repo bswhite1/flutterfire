@@ -595,6 +595,7 @@ public class FlutterFirebaseFirestorePlugin
         methodCallTask = queryGet(call.arguments());
         break;
       case "Query#snapshots":
+        Log.w("onMethodCall", "Query#snapshots METHOD_CHANNEL_NAME: " + METHOD_CHANNEL_NAME);
         result.success(
             registerEventChannel(
                 METHOD_CHANNEL_NAME + "/query", new QuerySnapshotsStreamHandler()));
@@ -762,6 +763,10 @@ public class FlutterFirebaseFirestorePlugin
    */
   private String registerEventChannel(String prefix, String identifier, StreamHandler handler) {
     final String channelName = prefix + "/" + identifier;
+
+    Log.w(
+      "registerEventChannel",
+      "channelName: " + channelName);
 
     EventChannel channel = new EventChannel(binaryMessenger, channelName, MESSAGE_CODEC);
     channel.setStreamHandler(handler);

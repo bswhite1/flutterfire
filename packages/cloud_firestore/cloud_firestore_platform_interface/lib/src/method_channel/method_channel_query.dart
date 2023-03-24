@@ -162,6 +162,8 @@ class MethodChannelQuery extends QueryPlatform {
           onError: convertPlatformException,
         ).listen(
           (snapshot) {
+            print('MethodChannelQuery snapshots onListen');
+
             controller.add(MethodChannelQuerySnapshot(firestore, snapshot));
           },
           onError: controller.addError,
