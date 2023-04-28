@@ -226,6 +226,13 @@ class MethodChannelQuery extends QueryPlatform {
   }
 
   @override
+  QueryPlatform whereFilter(Filter filter) {
+    return _copyWithParameters(<String, dynamic>{
+      'filters': filter.toJson(),
+    });
+  }
+
+  @override
   AggregateQueryPlatform count() {
     return MethodChannelAggregateQuery(
       this,
