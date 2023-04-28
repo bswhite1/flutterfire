@@ -75,7 +75,7 @@ android {
         api firebaseCoreProject
         implementation platform("com.google.firebase:firebase-bom:${getRootProjectExtOrCoreProperty("FirebaseSDKVersion", firebaseCoreProject)}")
 //        implementation 'com.google.firebase:firebase-firestore'
-        implementation 'com.google.firebase:firebase-firestore:33.1.1-SNAPSHOT'
+        implementation 'com.google.firebase:firebase-firestore:34.1.1-SNAPSHOT'
         implementation 'androidx.annotation:annotation:1.2.0'
     }
 }
