@@ -40,6 +40,7 @@ import io.flutter.plugins.firebase.firestore.streamhandler.DocumentSnapshotsStre
 import io.flutter.plugins.firebase.firestore.streamhandler.LoadBundleStreamHandler;
 import io.flutter.plugins.firebase.firestore.streamhandler.OnTransactionResultListener;
 import io.flutter.plugins.firebase.firestore.streamhandler.QuerySnapshotsStreamHandler;
+import io.flutter.plugins.firebase.firestore.streamhandler.QuerySnapshotChangesStreamHandler;
 import io.flutter.plugins.firebase.firestore.streamhandler.SnapshotsInSyncStreamHandler;
 import io.flutter.plugins.firebase.firestore.streamhandler.TransactionStreamHandler;
 import io.flutter.plugins.firebase.firestore.utils.ExceptionConverter;
@@ -181,6 +182,43 @@ public class FlutterFirebaseFirestorePlugin
             taskCompletionSource.setException(e);
           }
         });
+
+    return taskCompletionSource.getTask();
+  }
+
+
+  private Task<Void> enableDebugging(Map<String, Object> arguments) {
+    TaskCompletionSource<Void> taskCompletionSource = new TaskCompletionSource<>();
+
+    cachedThreadPool.execute(
+      () -> {
+        try {
+          FirebaseFirestore firestore =
+            (FirebaseFirestore) Objects.requireNonNull(arguments.get("firestore"));
+          firestore.setLoggingEnabled(true);
+          taskCompletionSource.setResult(null);
+        } catch (Exception e) {
+          taskCompletionSource.setException(e);
+        }
+      });
+
+    return taskCompletionSource.getTask();
+  }
+
+  private Task<Void> disableDebugging(Map<String, Object> arguments) {
+    TaskCompletionSource<Void> taskCompletionSource = new TaskCompletionSource<>();
+
+    cachedThreadPool.execute(
+      () -> {
+        try {
+          FirebaseFirestore firestore =
+            (FirebaseFirestore) Objects.requireNonNull(arguments.get("firestore"));
+          firestore.setLoggingEnabled(false);
+          taskCompletionSource.setResult(null);
+        } catch (Exception e) {
+          taskCompletionSource.setException(e);
+        }
+      });
 
     return taskCompletionSource.getTask();
   }
@@ -585,6 +623,12 @@ public class FlutterFirebaseFirestorePlugin
       case "Firestore#enableNetwork":
         methodCallTask = enableNetwork(call.arguments());
         break;
+      case "Firestore#enableDebugging":
+        methodCallTask = enableDebugging(call.arguments());
+        break;
+      case "Firestore#disableDebugging":
+        methodCallTask = disableDebugging(call.arguments());
+        break;
       case "Transaction#get":
         methodCallTask = transactionGet(call.arguments());
         break;
@@ -615,6 +659,12 @@ public class FlutterFirebaseFirestorePlugin
         result.success(
             registerEventChannel(
                 METHOD_CHANNEL_NAME + "/query", new QuerySnapshotsStreamHandler()));
+        return;
+      case "Query#snapshotChanges":
+        Log.w("onMethodCall", "Query#snapshotChanges METHOD_CHANNEL_NAME: " + METHOD_CHANNEL_NAME);
+        result.success(
+          registerEventChannel(
+            METHOD_CHANNEL_NAME + "/query", new QuerySnapshotChangesStreamHandler())); //Ben todo
         return;
       case "DocumentReference#snapshots":
         result.success(

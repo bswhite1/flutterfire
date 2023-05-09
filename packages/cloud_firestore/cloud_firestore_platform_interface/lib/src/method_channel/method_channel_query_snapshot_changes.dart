@@ -8,28 +8,13 @@ import 'package:flutter/material.dart';
 
 import 'method_channel_document_change.dart';
 
-/// An implementation of [QuerySnapshotPlatform] that uses [MethodChannel] to
+/// An implementation of [QuerySnapshotChangesPlatform] that uses [MethodChannel] to
 /// communicate with Firebase plugins.
-class MethodChannelQuerySnapshot extends QuerySnapshotPlatform {
-  /// Creates a [MethodChannelQuerySnapshot] from the given [data]
-  MethodChannelQuerySnapshot(
+class MethodChannelQuerySnapshotChanges extends QuerySnapshotChangesPlatform {
+  /// Creates a [MethodChannelQuerySnapshotChanges] from the given [data]
+  MethodChannelQuerySnapshotChanges(
       FirebaseFirestorePlatform firestore, Map<dynamic, dynamic> data)
       : super(
-            List<DocumentSnapshotPlatform>.generate(data['documents'].length,
-                (int index) {
-              return DocumentSnapshotPlatform(
-                firestore,
-                data['paths'][index],
-                <String, dynamic>{
-                  'data': Map<String, dynamic>.from(data['documents'][index]),
-                  'metadata': <String, dynamic>{
-                    'isFromCache': data['metadatas'][index]['isFromCache'],
-                    'hasPendingWrites': data['metadatas'][index]
-                        ['hasPendingWrites'],
-                  },
-                },
-              );
-            }),
             List<DocumentChangePlatform>.generate(
                 data['documentChanges'].length, (int index) {
               return MethodChannelDocumentChange(

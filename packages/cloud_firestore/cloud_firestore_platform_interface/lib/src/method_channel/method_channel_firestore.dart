@@ -193,6 +193,30 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
   }
 
   @override
+  Future<void> enableDebugging() async {
+    try {
+      await channel
+          .invokeMethod<void>('Firestore#enableDebugging', <String, dynamic>{
+        'firestore': this,
+      });
+    } catch (e, stack) {
+      convertPlatformException(e, stack);
+    }
+  }
+
+  @override
+  Future<void> disableDebugging() async {
+    try {
+      await channel
+          .invokeMethod<void>('Firestore#disableDebugging', <String, dynamic>{
+        'firestore': this,
+      });
+    } catch (e, stack) {
+      convertPlatformException(e, stack);
+    }
+  }
+
+  @override
   Stream<void> snapshotsInSync() {
     StreamSubscription<dynamic>? snapshotStreamSubscription;
     late StreamController<void> controller; // ignore: close_sinks

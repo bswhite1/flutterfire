@@ -9,7 +9,7 @@
 import 'dart:async';
 import 'dart:typed_data' show Uint8List, Int32List, Int64List, Float64List;
 
-import 'package:flutter/foundation.dart' show WriteBuffer, ReadBuffer;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 class PigeonFirebaseOptions {
@@ -125,6 +125,8 @@ class _FirebaseCoreHostApiCodec extends StandardMessageCodec {
   const _FirebaseCoreHostApiCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
+    debugPrint('messages.pigeon.dart writeValue ');
+
     if (value is PigeonFirebaseOptions) {
       buffer.putUint8(128);
       writeValue(buffer, value.encode());

@@ -502,6 +502,7 @@ public class GeneratedAndroidFirebaseCore {
 
     @Override
     protected void writeValue(ByteArrayOutputStream stream, Object value) {
+      Log.d("Ben_snapshot", "GeneratedAndroidFirebaseCore. writeValue");
       if (value instanceof PigeonFirebaseOptions) {
         stream.write(128);
         writeValue(stream, ((PigeonFirebaseOptions) value).toMap());

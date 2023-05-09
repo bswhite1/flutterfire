@@ -30,6 +30,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import android.util.Log;
+
+import io.flutter.plugins.firebase.firestore.streamhandler.QuerySnapshotWrapper;
 
 class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
   public static final FlutterFirebaseFirestoreMessageCodec INSTANCE =
@@ -56,6 +59,7 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
 
   @Override
   protected void writeValue(ByteArrayOutputStream stream, Object value) {
+//    Log.d("Ben_snapshot", "FlutterFirebaseMessageCodec. writeValue");
     if (value instanceof Date) {
       stream.write(DATA_TYPE_DATE_TIME);
       writeLong(stream, ((Date) value).getTime());
@@ -74,6 +78,8 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
       writeValue(stream, ((DocumentReference) value).getPath());
     } else if (value instanceof DocumentSnapshot) {
       writeDocumentSnapshot(stream, (DocumentSnapshot) value);
+    } else if (value instanceof QuerySnapshotWrapper) {
+      writeQuerySnapshotWrapper(stream, (QuerySnapshotWrapper) value);
     } else if (value instanceof QuerySnapshot) {
       writeQuerySnapshot(stream, (QuerySnapshot) value);
     } else if (value instanceof DocumentChange) {
@@ -135,10 +141,14 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
   }
 
   private void writeQuerySnapshot(ByteArrayOutputStream stream, QuerySnapshot value) {
+
+    Log.d("Ben_snapshot", "FlutterFirebaseMessageCodec. writeQuerySnapshot entered. size: " + String.valueOf(value.size()));
+
     List<String> paths = new ArrayList<>();
     Map<String, Object> querySnapshotMap = new HashMap<>();
     List<Map<String, Object>> documents = new ArrayList<>();
     List<SnapshotMetadata> metadatas = new ArrayList<>();
+
 
     DocumentSnapshot.ServerTimestampBehavior serverTimestampBehavior =
         FlutterFirebaseFirestorePlugin.serverTimestampBehaviorHashMap.get(value.hashCode());
@@ -160,7 +170,26 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
     querySnapshotMap.put("metadata", value.getMetadata());
 
     FlutterFirebaseFirestorePlugin.serverTimestampBehaviorHashMap.remove(value.hashCode());
+
     writeValue(stream, querySnapshotMap);
+
+    Log.d("Ben_snapshot", "FlutterFirebaseMessageCodec. writeQuerySnapshot Exit");
+  }
+
+  private void writeQuerySnapshotWrapper(ByteArrayOutputStream stream, QuerySnapshotWrapper value) {
+
+    Log.d("Ben_snapshot", "FlutterFirebaseMessageCodec. writeQuerySnapshotWrapper entered. size: " + String.valueOf(value.size()));
+
+
+    // ben, declare size?
+    Map<String, Object> querySnapshotChangesMap = new HashMap<>();
+
+    querySnapshotChangesMap.put("documentChanges", value.getDocumentChanges());
+    querySnapshotChangesMap.put("metadata", value.getMetadata());
+
+    writeValue(stream, querySnapshotChangesMap);
+
+    Log.d("Ben_snapshot", "FlutterFirebaseMessageCodec. writeQuerySnapshotWrapper Exit");
   }
 
   private void writeLoadBundleTaskProgress(
@@ -288,7 +317,7 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
 
       firestore.setFirestoreSettings(settings);
 
-      firestore.setLoggingEnabled(true);
+//      firestore.setLoggingEnabled(true);
 
       FlutterFirebaseFirestorePlugin.setCachedFirebaseFirestoreInstanceForKey(firestore, appName);
       return firestore;
