@@ -4,7 +4,6 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_interface.dart';
-import 'package:flutter/material.dart';
 
 import 'method_channel_document_change.dart';
 
@@ -40,7 +39,5 @@ class MethodChannelQuerySnapshot extends QuerySnapshotPlatform {
             SnapshotMetadataPlatform(
               data['metadata']['hasPendingWrites'],
               data['metadata']['isFromCache'],
-            )) {
-    debugPrint('documentChanges. MethodChannelQuerySnapshot called');
-  }
+            ));
 }

@@ -75,8 +75,6 @@ class FirestoreMessageCodec extends StandardMessageCodec {
     } else if (value is DocumentReferencePlatform) {
       buffer.putUint8(_kDocumentReference);
 
-      debugPrint('firestore_message_codec calling writeValue 1');
-
       writeValue(buffer, value.firestore);
       writeValue(buffer, value.path);
     } else if (value is Blob) {
@@ -88,7 +86,6 @@ class FirestoreMessageCodec extends StandardMessageCodec {
       final int code = _kFieldValueCodes[delegate.type]!;
       buffer.putUint8(code);
       if (delegate.value != null) {
-        debugPrint('firestore_message_codec calling writeValue 2');
         writeValue(buffer, delegate.value);
       }
     } else if (value is FieldPathType) {
@@ -98,18 +95,14 @@ class FirestoreMessageCodec extends StandardMessageCodec {
       buffer.putUint8(_kFieldPath);
       writeSize(buffer, value.components.length);
       for (final String item in value.components) {
-        debugPrint('firestore_message_codec calling writeValue 3');
         writeValue(buffer, item);
       }
     } else if (value is MethodChannelFirebaseFirestore) {
       buffer.putUint8(_kFirestoreInstance);
-      debugPrint('firestore_message_codec calling writeValue 4');
       writeValue(buffer, value.app.name);
-      debugPrint('firestore_message_codec calling writeValue 5');
       writeValue(buffer, value.settings);
     } else if (value is MethodChannelQuery) {
       buffer.putUint8(_kFirestoreQuery);
-      debugPrint('firestore_message_codec calling writeValue 6');
       writeValue(buffer, <String, dynamic>{
         'firestore': value.firestore,
         'path': value.path,
@@ -118,10 +111,8 @@ class FirestoreMessageCodec extends StandardMessageCodec {
       });
     } else if (value is Settings) {
       buffer.putUint8(_kFirestoreSettings);
-      debugPrint('firestore_message_codec calling writeValue 7');
       writeValue(buffer, value.asMap);
     } else if (value is Iterable && value is! List) {
-      debugPrint('firestore_message_codec calling writeValue 8');
       super.writeValue(buffer, value.toList());
     } else if (value == double.nan) {
       buffer.putUint8(_kNaN);
@@ -130,7 +121,6 @@ class FirestoreMessageCodec extends StandardMessageCodec {
     } else if (value == double.negativeInfinity) {
       buffer.putUint8(_kNegativeInfinity);
     } else {
-      debugPrint('firestore_message_codec calling writeValue 9');
       super.writeValue(buffer, value);
     }
   }

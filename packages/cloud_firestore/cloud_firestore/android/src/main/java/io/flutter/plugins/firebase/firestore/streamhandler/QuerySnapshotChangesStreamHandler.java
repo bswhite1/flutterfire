@@ -15,8 +15,6 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import io.flutter.plugin.common.EventChannel.EventSink;
 import io.flutter.plugin.common.EventChannel.StreamHandler;
-//import io.flutter.plugins.firebase.firestore.streamhandler.QuerySnapshotWrapper;
-
 import io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestorePlugin;
 import io.flutter.plugins.firebase.firestore.utils.ExceptionConverter;
 import io.flutter.plugins.firebase.firestore.utils.ServerTimestampBehaviorConverter;
@@ -48,10 +46,6 @@ public class QuerySnapshotChangesStreamHandler implements StreamHandler {
         "An error occurred while parsing query arguments, see native logs for more information. Please report this issue.");
     }
 
-    Log.w(
-      "QuerySnapshotChangesStreamHandler",
-      "Entered OnListen");
-
     listenerRegistration =
       query.addSnapshotListener(
         metadataChanges,
@@ -71,9 +65,6 @@ public class QuerySnapshotChangesStreamHandler implements StreamHandler {
               FlutterFirebaseFirestorePlugin.serverTimestampBehaviorHashMap.put(
                 querySnapshot.hashCode(), serverTimestampBehavior);
             }
-            Log.w(
-              "QuerySnapshotChangesStreamHandler",
-              "addSnapshotListener calling events.success");
 
             QuerySnapshotWrapper wrappedQuerySnapshot = new QuerySnapshotWrapper(querySnapshot);
             events.success((QuerySnapshotWrapper) wrappedQuerySnapshot);

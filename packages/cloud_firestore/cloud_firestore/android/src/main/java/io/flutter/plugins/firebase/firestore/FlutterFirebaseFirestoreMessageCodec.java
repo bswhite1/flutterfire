@@ -59,7 +59,6 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
 
   @Override
   protected void writeValue(ByteArrayOutputStream stream, Object value) {
-//    Log.d("Ben_snapshot", "FlutterFirebaseMessageCodec. writeValue");
     if (value instanceof Date) {
       stream.write(DATA_TYPE_DATE_TIME);
       writeLong(stream, ((Date) value).getTime());
@@ -141,9 +140,6 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
   }
 
   private void writeQuerySnapshot(ByteArrayOutputStream stream, QuerySnapshot value) {
-
-    Log.d("Ben_snapshot", "FlutterFirebaseMessageCodec. writeQuerySnapshot entered. size: " + String.valueOf(value.size()));
-
     List<String> paths = new ArrayList<>();
     Map<String, Object> querySnapshotMap = new HashMap<>();
     List<Map<String, Object>> documents = new ArrayList<>();
@@ -172,24 +168,15 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
     FlutterFirebaseFirestorePlugin.serverTimestampBehaviorHashMap.remove(value.hashCode());
 
     writeValue(stream, querySnapshotMap);
-
-    Log.d("Ben_snapshot", "FlutterFirebaseMessageCodec. writeQuerySnapshot Exit");
   }
 
   private void writeQuerySnapshotWrapper(ByteArrayOutputStream stream, QuerySnapshotWrapper value) {
-
-    Log.d("Ben_snapshot", "FlutterFirebaseMessageCodec. writeQuerySnapshotWrapper entered. size: " + String.valueOf(value.size()));
-
-
-    // ben, declare size?
     Map<String, Object> querySnapshotChangesMap = new HashMap<>();
 
     querySnapshotChangesMap.put("documentChanges", value.getDocumentChanges());
     querySnapshotChangesMap.put("metadata", value.getMetadata());
 
     writeValue(stream, querySnapshotChangesMap);
-
-    Log.d("Ben_snapshot", "FlutterFirebaseMessageCodec. writeQuerySnapshotWrapper Exit");
   }
 
   private void writeLoadBundleTaskProgress(

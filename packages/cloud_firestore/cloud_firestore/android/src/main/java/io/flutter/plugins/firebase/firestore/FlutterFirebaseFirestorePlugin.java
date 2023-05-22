@@ -255,7 +255,6 @@ public class FlutterFirebaseFirestorePlugin
   private void transactionStoreResult(Map<String, Object> arguments) {
     String transactionId = (String) Objects.requireNonNull(arguments.get("transactionId"));
 
-    Log.w("transactionStoreResult", "transactionId: " + transactionId);
     @SuppressWarnings("unchecked")
     Map<String, Object> result =
         (Map<String, Object>) Objects.requireNonNull(arguments.get("result"));
@@ -635,7 +634,6 @@ public class FlutterFirebaseFirestorePlugin
       case "Transaction#create":
         final String transactionId = UUID.randomUUID().toString().toLowerCase(Locale.US);
 
-        Log.w("FlutterFirebaseFirestorePlugin", "Transaction#create calling TransactionStreamHandler transactionId: " + transactionId);
         final TransactionStreamHandler handler =
             new TransactionStreamHandler(
                 transaction -> transactions.put(transactionId, transaction));
@@ -655,13 +653,11 @@ public class FlutterFirebaseFirestorePlugin
         methodCallTask = queryGet(call.arguments());
         break;
       case "Query#snapshots":
-        Log.w("onMethodCall", "Query#snapshots METHOD_CHANNEL_NAME: " + METHOD_CHANNEL_NAME);
         result.success(
             registerEventChannel(
                 METHOD_CHANNEL_NAME + "/query", new QuerySnapshotsStreamHandler()));
         return;
       case "Query#snapshotChanges":
-        Log.w("onMethodCall", "Query#snapshotChanges METHOD_CHANNEL_NAME: " + METHOD_CHANNEL_NAME);
         result.success(
           registerEventChannel(
             METHOD_CHANNEL_NAME + "/query", new QuerySnapshotChangesStreamHandler())); //Ben todo
@@ -829,10 +825,6 @@ public class FlutterFirebaseFirestorePlugin
    */
   private String registerEventChannel(String prefix, String identifier, StreamHandler handler) {
     final String channelName = prefix + "/" + identifier;
-
-    Log.w(
-      "registerEventChannel",
-      "channelName: " + channelName);
 
     EventChannel channel = new EventChannel(binaryMessenger, channelName, MESSAGE_CODEC);
     channel.setStreamHandler(handler);

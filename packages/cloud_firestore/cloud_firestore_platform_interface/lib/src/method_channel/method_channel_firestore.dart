@@ -253,13 +253,10 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
     assert(timeout.inMilliseconds > 0,
         'Transaction timeout must be more than 0 milliseconds');
 
-    print(
-        'method_channel_firestore.dart runTransaction calling Transaction#create');
     final String? transactionId =
         await MethodChannelFirebaseFirestore.channel.invokeMethod<String>(
       'Transaction#create',
     );
-    print('runTransaction transactionId: $transactionId');
 
     Completer<T> completer = Completer();
 
@@ -282,8 +279,6 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
     ).listen(
       (event) async {
         if (event['error'] != null) {
-          print(
-              'runTransaction receiveBroadcastStream error code: ${event['error']['code']} message: ${event['error']['message']}');
           completer.completeError(
             FirebaseException(
               plugin: 'cloud_firestore',
@@ -293,12 +288,8 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
           );
           return;
         } else if (event['complete'] == true) {
-          print('runTransaction receiveBroadcastStream complete');
           completer.complete(result);
           return;
-        } else {
-          print(
-              'runTransaction receiveBroadcastStream else ... event: ${event.toString()}');
         }
 
         final TransactionPlatform transaction =
@@ -307,14 +298,8 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
         // If the transaction fails on Dart side, then forward the error
         // right away and only inform native side of the error.
         try {
-          print('runTransaction calling transactionHandler.');
           result = await transactionHandler(transaction) as T;
-          print(
-              'runTransaction transactionHandler returned result: ${result.toString()}');
         } catch (error, stack) {
-          print(
-              'runTransaction transactionHandler error: ${error.toString()} stack: ${stack.toString()}');
-
           // Signal native that a user error occurred, and finish the
           // transaction
           await MethodChannelFirebaseFirestore.channel
@@ -332,8 +317,6 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
           return;
         }
 
-        print('runTransaction success');
-
         // Send the transaction commands to Dart.
         await MethodChannelFirebaseFirestore.channel
             .invokeMethod('Transaction#storeResult', <String, dynamic>{
@@ -346,12 +329,7 @@ class MethodChannelFirebaseFirestore extends FirebaseFirestorePlatform {
       },
     );
 
-    return completer.future.whenComplete(() {
-      print('runTransaction returning.');
-      snapshotStreamSubscription.cancel();
-    });
-
-    // return completer.future.whenComplete(snapshotStreamSubscription.cancel);
+    return completer.future.whenComplete(snapshotStreamSubscription.cancel);
   }
 
   @override

@@ -39,7 +39,6 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
   final OnTransactionStartedListener onTransactionStartedListener;
 
   public TransactionStreamHandler(OnTransactionStartedListener onTransactionStartedListener) {
-    Log.w("TransactionStreamHandler", "Created" + this.toString());
     this.onTransactionStartedListener = onTransactionStartedListener;
   }
 
@@ -49,7 +48,6 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
 
   @Override
   public void onListen(Object arguments, EventSink events) {
-    Log.w("TransactionStreamHandler", "onListen " + this.toString());
 
     @SuppressWarnings("unchecked")
     Map<String, Object> argumentsMap = (Map<String, Object>) arguments;
@@ -68,9 +66,6 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
       timeout = 5000L;
     }
 
-
-    Log.w("TransactionStreamHandler", "timeout: " + timeout.toString());
-
     // Always sent by the PlatformChannel
     int maxAttempts = (int) argumentsMap.get("maxAttempts");
 
@@ -79,7 +74,6 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
         .runTransaction(
             new TransactionOptions.Builder().setMaxAttempts(maxAttempts).build(),
             transaction -> {
-              Log.w("TransactionStreamHandler", "entered firestore.runTransaction");
               onTransactionStartedListener.onStarted(transaction);
 
               Map<String, Object> attemptMap = new HashMap<>();
@@ -88,8 +82,6 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
               mainLooper.post(() -> events.success(attemptMap));
 
               try {
-                Log.w("TransactionStreamHandler", "semaphore.tryAcquire");
-
                 if (!semaphore.tryAcquire(timeout, TimeUnit.MILLISECONDS)) {
                   return FlutterFirebaseFirestoreTransactionResult.failed(
                       new FirebaseFirestoreException("timed out", Code.DEADLINE_EXCEEDED));
@@ -101,14 +93,10 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
 
 
               if (response.isEmpty()) {
-                Log.w("TransactionStreamHandler", "response.isEmpty");
                 return FlutterFirebaseFirestoreTransactionResult.complete();
               }
-              Log.w("TransactionStreamHandler", "response.is not empty");
 
               final String resultType = (String) response.get("type");
-
-              Log.w("TransactionStreamHandler", "resultType: " + resultType);
 
               if ("ERROR".equalsIgnoreCase(resultType)) {
                 return FlutterFirebaseFirestoreTransactionResult.complete();
@@ -131,13 +119,10 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
                     transaction.delete(documentReference);
                     break;
                   case "UPDATE":
-                    Log.w("TransactionStreamHandler", "UPDATE: " + documentReference.getPath());
                     transaction.update(documentReference, Objects.requireNonNull(data));
                     break;
                   case "SET":
                     {
-                      Log.w("TransactionStreamHandler", "SET: " + documentReference.getPath());
-
                       @SuppressWarnings("unchecked")
                       Map<String, Object> options =
                           (Map<String, Object>) Objects.requireNonNull(command.get("options"));
@@ -187,13 +172,11 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
 
   @Override
   public void onCancel(Object arguments) {
-    Log.w("TransactionStreamHandler", "onCancel semaphore.release");
     semaphore.release();
   }
 
   @Override
   public void receiveTransactionResponse(Map<String, Object> result) {
-    Log.w("TransactionStreamHandler", "receiveTransactionResponse semaphore.release");
     response.putAll(result);
     semaphore.release();
   }
