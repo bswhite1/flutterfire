@@ -74,7 +74,6 @@ class FirestoreMessageCodec extends StandardMessageCodec {
       buffer.putFloat64(value.longitude);
     } else if (value is DocumentReferencePlatform) {
       buffer.putUint8(_kDocumentReference);
-
       writeValue(buffer, value.firestore);
       writeValue(buffer, value.path);
     } else if (value is Blob) {
@@ -85,9 +84,7 @@ class FirestoreMessageCodec extends StandardMessageCodec {
       MethodChannelFieldValue delegate = FieldValuePlatform.getDelegate(value);
       final int code = _kFieldValueCodes[delegate.type]!;
       buffer.putUint8(code);
-      if (delegate.value != null) {
-        writeValue(buffer, delegate.value);
-      }
+      if (delegate.value != null) writeValue(buffer, delegate.value);
     } else if (value is FieldPathType) {
       final int code = _kFieldPathCodes[value]!;
       buffer.putUint8(code);

@@ -35,10 +35,6 @@ public class DocumentSnapshotsStreamHandler implements StreamHandler {
     DocumentReference documentReference =
         (DocumentReference) Objects.requireNonNull(argumentsMap.get("reference"));
 
-    Log.w(
-      "DocumentSnapshotsStreamHandler",
-      "Entered OnListen");
-
     listenerRegistration =
         documentReference.addSnapshotListener(
             metadataChanges,

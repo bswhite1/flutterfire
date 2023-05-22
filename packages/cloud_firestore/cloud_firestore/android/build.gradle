@@ -1,25 +1,9 @@
 group 'io.flutter.plugins.firebase.cloudfirestore'
 version '1.0-SNAPSHOT'
 
-repositories {
-  mavenLocal()
-  flatDir{
-    dirs '/Users/bwhite/.M2/repository'
-  }
-  maven{
-    url '/Users/bwhite/.M2/repository'
-  }
-}
-
 buildscript {
     repositories {
         mavenLocal()
-        flatDir{
-          dirs '/Users/bwhite/.M2/repository'
-        }
-        maven{
-          url '/Users/bwhite/.M2/repository'
-        }
         google()
         mavenCentral()
     }
@@ -32,12 +16,6 @@ buildscript {
 allprojects {
     repositories {
         mavenLocal()
-        flatDir{
-          dirs '/Users/bwhite/.M2/repository'
-        }
-        maven{
-          url '/Users/bwhite/.M2/repository'
-        }
         google()
         mavenCentral()
     }
@@ -74,8 +52,8 @@ android {
     dependencies {
         api firebaseCoreProject
         implementation platform("com.google.firebase:firebase-bom:${getRootProjectExtOrCoreProperty("FirebaseSDKVersion", firebaseCoreProject)}")
-//        implementation 'com.google.firebase:firebase-firestore'
-        implementation 'com.google.firebase:firebase-firestore:24.6.1'
+        implementation 'com.google.firebase:firebase-firestore'
+//        implementation 'com.google.firebase:firebase-firestore:24.6.1'
         implementation 'androidx.annotation:annotation:1.2.0'
     }
 }

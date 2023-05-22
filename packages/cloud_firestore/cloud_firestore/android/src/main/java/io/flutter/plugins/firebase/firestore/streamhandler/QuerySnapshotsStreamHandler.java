@@ -45,10 +45,6 @@ public class QuerySnapshotsStreamHandler implements StreamHandler {
           "An error occurred while parsing query arguments, see native logs for more information. Please report this issue.");
     }
 
-    Log.w(
-      "QuerySnapshotsStreamHandler",
-      "Entered OnListen");
-
     listenerRegistration =
         query.addSnapshotListener(
             metadataChanges,
@@ -68,9 +64,6 @@ public class QuerySnapshotsStreamHandler implements StreamHandler {
                   FlutterFirebaseFirestorePlugin.serverTimestampBehaviorHashMap.put(
                       querySnapshot.hashCode(), serverTimestampBehavior);
                 }
-                Log.w(
-                  "QuerySnapshotsStreamHandler",
-                  "addSnapshotListener calling events.success");
 
                 events.success(querySnapshot);
               }

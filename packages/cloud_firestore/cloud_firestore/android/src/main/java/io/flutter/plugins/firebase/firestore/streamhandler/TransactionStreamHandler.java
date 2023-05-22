@@ -6,7 +6,6 @@
 
 package io.flutter.plugins.firebase.firestore.streamhandler;
 
-import android.util.Log;
 import android.os.Handler;
 import android.os.Looper;
 import androidx.annotation.Nullable;
@@ -48,7 +47,6 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
 
   @Override
   public void onListen(Object arguments, EventSink events) {
-
     @SuppressWarnings("unchecked")
     Map<String, Object> argumentsMap = (Map<String, Object>) arguments;
 
@@ -68,7 +66,6 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
 
     // Always sent by the PlatformChannel
     int maxAttempts = (int) argumentsMap.get("maxAttempts");
-
 
     firestore
         .runTransaction(
@@ -91,11 +88,9 @@ public class TransactionStreamHandler implements OnTransactionResultListener, St
                     new FirebaseFirestoreException("interrupted", Code.DEADLINE_EXCEEDED));
               }
 
-
               if (response.isEmpty()) {
                 return FlutterFirebaseFirestoreTransactionResult.complete();
               }
-
               final String resultType = (String) response.get("type");
 
               if ("ERROR".equalsIgnoreCase(resultType)) {
