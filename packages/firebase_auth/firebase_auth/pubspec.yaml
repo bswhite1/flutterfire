@@ -14,15 +14,10 @@ environment:
   flutter: '>=1.12.13+hotfix.5'
 
 dependencies:
-
-  firebase_auth_platform_interface:
-    path: ../firebase_auth_platform_interface
-  firebase_auth_web:
-    path: ../firebase_auth_web
-  firebase_core:
-    path: ../../firebase_core/firebase_core
-  firebase_core_platform_interface:
-    path: ../../firebase_core/firebase_core_platform_interface
+  firebase_auth_platform_interface: ^6.13.1
+  firebase_auth_web: ^5.3.2
+  firebase_core: ^2.10.0
+  firebase_core_platform_interface: ^4.6.0
 
   flutter:
     sdk: flutter

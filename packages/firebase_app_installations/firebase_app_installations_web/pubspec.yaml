@@ -9,14 +9,10 @@ environment:
   flutter: '>=1.20.0'
 
 dependencies:
-  _flutterfire_internals:
-    path: ../../_flutterfire_internals
-  firebase_app_installations_platform_interface:
-    path: ../firebase_app_installations_platform_interface
-  firebase_core:
-    path: ../../firebase_core/firebase_core
-  firebase_core_web:
-    path: ../../firebase_core/firebase_core_web
+  _flutterfire_internals: ^1.1.1
+  firebase_app_installations_platform_interface: ^0.1.2+1
+  firebase_core: ^2.10.0
+  firebase_core_web: ^2.3.0
   flutter:
     sdk: flutter
   flutter_web_plugins:
@@ -24,8 +20,7 @@ dependencies:
   js: ^0.6.3
 
 dev_dependencies:
-  firebase_core_platform_interface:
-    path: ../../firebase_core/firebase_core_platform_interface
+  firebase_core_platform_interface: ^4.6.0
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0

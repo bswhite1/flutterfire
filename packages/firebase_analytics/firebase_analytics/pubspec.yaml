@@ -14,14 +14,10 @@ environment:
   flutter: '>=1.12.13+hotfix.5'
 
 dependencies:
-  firebase_analytics_platform_interface:
-    path: ../firebase_analytics_platform_interface
-  firebase_analytics_web:
-    path: ../firebase_analytics_web
-  firebase_core:
-    path: ../../firebase_core/firebase_core
-  firebase_core_platform_interface:
-    path: ../../firebase_core/firebase_core_platform_interface
+  firebase_analytics_platform_interface: ^3.4.1
+  firebase_analytics_web: ^0.5.2+1
+  firebase_core: ^2.10.0
+  firebase_core_platform_interface: ^4.6.0
   flutter:
     sdk: flutter
 
