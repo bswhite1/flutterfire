@@ -21,7 +21,12 @@ dependencies:
       path: packages/cloud_firestore/cloud_firestore_platform_interface
       ref: snapshot_changes_git_paths
 
-  cloud_firestore_web: ^3.4.2
+  cloud_firestore_web:
+    git:
+      url: https://github.com/bswhite1/flutterfire.git
+      path: packages/cloud_firestore/cloud_firestore_web
+      ref: snapshot_changes_git_paths
+
   collection: ^1.0.0
   firebase_core: ^2.10.0
   firebase_core_platform_interface: ^4.6.0
