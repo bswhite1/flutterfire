@@ -4,7 +4,6 @@
 
 package io.flutter.plugins.firebase.firestore;
 
-import android.util.Log;
 import android.app.Activity;
 import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.Task;
@@ -186,7 +185,6 @@ public class FlutterFirebaseFirestorePlugin
     return taskCompletionSource.getTask();
   }
 
-
   private Task<Void> enableDebugging(Map<String, Object> arguments) {
     TaskCompletionSource<Void> taskCompletionSource = new TaskCompletionSource<>();
 
@@ -254,7 +252,6 @@ public class FlutterFirebaseFirestorePlugin
 
   private void transactionStoreResult(Map<String, Object> arguments) {
     String transactionId = (String) Objects.requireNonNull(arguments.get("transactionId"));
-
     @SuppressWarnings("unchecked")
     Map<String, Object> result =
         (Map<String, Object>) Objects.requireNonNull(arguments.get("result"));
@@ -633,7 +630,6 @@ public class FlutterFirebaseFirestorePlugin
         break;
       case "Transaction#create":
         final String transactionId = UUID.randomUUID().toString().toLowerCase(Locale.US);
-
         final TransactionStreamHandler handler =
             new TransactionStreamHandler(
                 transaction -> transactions.put(transactionId, transaction));
@@ -660,7 +656,7 @@ public class FlutterFirebaseFirestorePlugin
       case "Query#snapshotChanges":
         result.success(
           registerEventChannel(
-            METHOD_CHANNEL_NAME + "/query", new QuerySnapshotChangesStreamHandler())); //Ben todo
+            METHOD_CHANNEL_NAME + "/query", new QuerySnapshotChangesStreamHandler()));
         return;
       case "DocumentReference#snapshots":
         result.success(

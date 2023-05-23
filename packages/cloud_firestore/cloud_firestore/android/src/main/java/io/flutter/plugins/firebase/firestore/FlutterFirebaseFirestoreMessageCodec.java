@@ -22,6 +22,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SnapshotMetadata;
 import io.flutter.plugin.common.StandardMessageCodec;
+import io.flutter.plugins.firebase.firestore.streamhandler.QuerySnapshotWrapper;
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -30,9 +31,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import android.util.Log;
-
-import io.flutter.plugins.firebase.firestore.streamhandler.QuerySnapshotWrapper;
 
 class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
   public static final FlutterFirebaseFirestoreMessageCodec INSTANCE =
@@ -145,7 +143,6 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
     List<Map<String, Object>> documents = new ArrayList<>();
     List<SnapshotMetadata> metadatas = new ArrayList<>();
 
-
     DocumentSnapshot.ServerTimestampBehavior serverTimestampBehavior =
         FlutterFirebaseFirestorePlugin.serverTimestampBehaviorHashMap.get(value.hashCode());
 
@@ -166,7 +163,6 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
     querySnapshotMap.put("metadata", value.getMetadata());
 
     FlutterFirebaseFirestorePlugin.serverTimestampBehaviorHashMap.remove(value.hashCode());
-
     writeValue(stream, querySnapshotMap);
   }
 
@@ -303,8 +299,6 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
       FirebaseFirestore firestore = FirebaseFirestore.getInstance(app);
 
       firestore.setFirestoreSettings(settings);
-
-//      firestore.setLoggingEnabled(true);
 
       FlutterFirebaseFirestorePlugin.setCachedFirebaseFirestoreInstanceForKey(firestore, appName);
       return firestore;
