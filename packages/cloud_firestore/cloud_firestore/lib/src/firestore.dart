@@ -206,6 +206,16 @@ class FirebaseFirestore extends FirebasePluginPlatform {
     return _delegate.enableNetwork();
   }
 
+  /// Enables debugging for this instance.
+  Future<void> enableDebugging() {
+    return _delegate.enableDebugging();
+  }
+
+  /// Instructs [FirebaseFirestore] to disable the debugging for the instance.
+  Future<void> disableDebugging() {
+    return _delegate.disableDebugging();
+  }
+
   /// Returns a [Stream] which is called each time all of the active listeners
   /// have been synchronized.
   Stream<void> snapshotsInSync() {

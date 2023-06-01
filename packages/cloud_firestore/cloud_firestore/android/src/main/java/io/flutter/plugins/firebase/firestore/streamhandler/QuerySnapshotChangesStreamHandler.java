@@ -12,6 +12,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.MetadataChanges;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import io.flutter.plugin.common.EventChannel.EventSink;
 import io.flutter.plugin.common.EventChannel.StreamHandler;
 import io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestorePlugin;
@@ -21,7 +22,7 @@ import java.util.Map;
 import java.util.Objects;
 import android.util.Log;
 
-public class QuerySnapshotsStreamHandler implements StreamHandler {
+public class QuerySnapshotChangesStreamHandler implements StreamHandler {
 
   ListenerRegistration listenerRegistration;
 
@@ -31,43 +32,44 @@ public class QuerySnapshotsStreamHandler implements StreamHandler {
     Map<String, Object> argumentsMap = (Map<String, Object>) arguments;
 
     MetadataChanges metadataChanges =
-        (Boolean) Objects.requireNonNull(argumentsMap.get("includeMetadataChanges"))
-            ? MetadataChanges.INCLUDE
-            : MetadataChanges.EXCLUDE;
+      (Boolean) Objects.requireNonNull(argumentsMap.get("includeMetadataChanges"))
+        ? MetadataChanges.INCLUDE
+        : MetadataChanges.EXCLUDE;
 
     Query query = (Query) argumentsMap.get("query");
     String serverTimestampBehaviorString = (String) argumentsMap.get("serverTimestampBehavior");
     DocumentSnapshot.ServerTimestampBehavior serverTimestampBehavior =
-        ServerTimestampBehaviorConverter.toServerTimestampBehavior(serverTimestampBehaviorString);
+      ServerTimestampBehaviorConverter.toServerTimestampBehavior(serverTimestampBehaviorString);
 
     if (query == null) {
       throw new IllegalArgumentException(
-          "An error occurred while parsing query arguments, see native logs for more information. Please report this issue.");
+        "An error occurred while parsing query arguments, see native logs for more information. Please report this issue.");
     }
 
     listenerRegistration =
-        query.addSnapshotListener(
-            metadataChanges,
-            (querySnapshot, exception) -> {
-              if (exception != null) {
-                Map<String, String> exceptionDetails = ExceptionConverter.createDetails(exception);
-                events.error(DEFAULT_ERROR_CODE, exception.getMessage(), exceptionDetails);
-                events.endOfStream();
+      query.addSnapshotListener(
+        metadataChanges,
+        (querySnapshot, exception) -> {
+          if (exception != null) {
+            Map<String, String> exceptionDetails = ExceptionConverter.createDetails(exception);
+            events.error(DEFAULT_ERROR_CODE, exception.getMessage(), exceptionDetails);
+            events.endOfStream();
 
-                Log.e(
-                  "QuerySnapshotsStreamHandler",
-                  "OnListen exception: " + exception.getMessage());
+            Log.e(
+              "QuerySnapshotChangesStreamHandler",
+              "OnListen exception: " + exception.getMessage());
 
-                onCancel(null);
-              } else {
-                if (querySnapshot != null) {
-                  FlutterFirebaseFirestorePlugin.serverTimestampBehaviorHashMap.put(
-                      querySnapshot.hashCode(), serverTimestampBehavior);
-                }
+            onCancel(null);
+          } else {
+            if (querySnapshot != null) {
+              FlutterFirebaseFirestorePlugin.serverTimestampBehaviorHashMap.put(
+                querySnapshot.hashCode(), serverTimestampBehavior);
+            }
 
-                events.success(querySnapshot);
-              }
-            });
+            QuerySnapshotWrapper wrappedQuerySnapshot = new QuerySnapshotWrapper(querySnapshot);
+            events.success((QuerySnapshotWrapper) wrappedQuerySnapshot);
+          }
+        });
   }
 
   @Override

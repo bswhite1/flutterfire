@@ -22,6 +22,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SnapshotMetadata;
 import io.flutter.plugin.common.StandardMessageCodec;
+import io.flutter.plugins.firebase.firestore.streamhandler.QuerySnapshotWrapper;
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -74,6 +75,8 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
       writeValue(stream, ((DocumentReference) value).getPath());
     } else if (value instanceof DocumentSnapshot) {
       writeDocumentSnapshot(stream, (DocumentSnapshot) value);
+    } else if (value instanceof QuerySnapshotWrapper) {
+      writeQuerySnapshotWrapper(stream, (QuerySnapshotWrapper) value);
     } else if (value instanceof QuerySnapshot) {
       writeQuerySnapshot(stream, (QuerySnapshot) value);
     } else if (value instanceof DocumentChange) {
@@ -161,6 +164,15 @@ class FlutterFirebaseFirestoreMessageCodec extends StandardMessageCodec {
 
     FlutterFirebaseFirestorePlugin.serverTimestampBehaviorHashMap.remove(value.hashCode());
     writeValue(stream, querySnapshotMap);
+  }
+
+  private void writeQuerySnapshotWrapper(ByteArrayOutputStream stream, QuerySnapshotWrapper value) {
+    Map<String, Object> querySnapshotChangesMap = new HashMap<>();
+
+    querySnapshotChangesMap.put("documentChanges", value.getDocumentChanges());
+    querySnapshotChangesMap.put("metadata", value.getMetadata());
+
+    writeValue(stream, querySnapshotChangesMap);
   }
 
   private void writeLoadBundleTaskProgress(
